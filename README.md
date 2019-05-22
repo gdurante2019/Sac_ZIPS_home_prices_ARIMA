@@ -13,10 +13,14 @@ In this lesson, we'll review all the guidelines and specifications for the final
 
 ### Final Project Summary
 
-Another module down--you're absolutely crushing it! For this project, you'll get to flex your **_Times-Series_** muscles!
-
-<img src='https://media.giphy.com/media/l0MYOUI5XfRk4LLWM/giphy.gif'>
-
+Another module down--you're absolutely crushing it! For this project, you'll get to flex your **_Time-Series_** muscles!
+<br>
+<br>
+<center>
+<img src='images/time.webp'>
+<a href='https://media.giphy.com/media/l0MYOUI5XfRk4LLWM/giphy.gif'>Via Giphy</a></center>
+<br>
+<br>
 For this module's final project, we're going to put your newfound **_Time Series Analysis_** skills to the test. You will be forecasting real estate prices of various zipcodes using data from [Zillow](https://www.zillow.com/research/data/). However, this won't be as straightforward as just running a time-series analysis--you're going to have to make some data-driven decisions and think critically along the way!
 
 ### The Project
