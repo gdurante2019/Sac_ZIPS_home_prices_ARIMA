@@ -41,14 +41,14 @@ In short, to pass this project, demonstrating the quality and thoughtfulness of 
 
 In order to successfully complete this project, you must have:
 
-* A well-documented **_Jupyter Notebook_** containing any code you've written for this project 
+* A well-documented **_Jupyter Notebook_** containing any code you've written for this project (use the notebook in this repo, `mod_4_starter_notebook.ipynb`)
 * A **_Blog post_** detailing your methodology and your findings
 * An **_'Executive Summary' PowerPoint Presentation_** that explains your rationale and methodology for determining the best zipcodes for investment.
 
 
 ### Jupyter Notebook Must-Haves
 
-For this project, your jupyter notebook should meet the following specifications:
+For this project, you will be provided with a jupyter notebook containing some starter code. If you inspect the zillow dataset file, you'll notice that the datetimes for each sale are the actual column names--this is a format you probably haven't seen before. To ensure that you're not blocked by preprocessing, we've provided some helper functions to help simplify getting the data into the correct format. You're not required to use this notebook or keep it in its current format, but we strongly recommend you consider making use of the helper functions so you can spend your time working on the parts of the project that matter. 
 
 #### Organization/Code Cleanliness
 
