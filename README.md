@@ -38,7 +38,7 @@ In short, to pass this project, demonstrating the quality and thoughtfulness of 
 In order to successfully complete this project, you must have:
 
 * A well-documented **_Jupyter Notebook_** containing any code you've written for this project (use the notebook in this repo, `mod_4_starter_notebook.ipynb`)
-* A **_Blog post_** detailing your methodology and your findings
+* A **_Blog post_** detailing your methodology and your findings in the project or on a technical topic you learned in the module.
 * An **_'Executive Summary' PowerPoint Presentation_** that explains your rationale and methodology for determining the best zipcodes for investment.
 
 
@@ -76,11 +76,8 @@ There's just too much going on in this graph for it to be readable--don't make t
 
 ### Blog Post Must-Haves
 
-Your blog post is where you should dig into your thought process and methodology. As with blog post requirements for other projects, your blog post should strike a balance between writing for technical audiences and non-technical audiences. It should contain code snippets, data visualizations, and a detailed explanation of your methodology and findings. The end goal of this deliverable is to share your findings, but to also leave the reader with a sense of how you found these answers, and why they are correct. 
+Refer back to the [Blogging Guidelines](https://github.com/learn-co-curriculum/dsc-welcome-blogging) for the technical requirements and blog ideas.
 
-Of the three deliverables, this is the best one for diving deeply into how you defined what makes for the "best" investment opportunities. Your blog post should definitely take some time to dive into the different options available, and should define why the metrics you picked are the best choice--for example, explaining how riskiness fits into your overall model (if at all), or why ROI is (or isn't) the metric you chose to optimize against. 
-
-**_NOTE:_** This blog post is your way of showcasing the work you've done on this project--chances are it will soon be read by a recruiter or hiring manager! Take the time to make sure that you craft your story well, and clearly explain your process and findings in a way that clearly shows both your technical expertise **and** your ability to communicate your results!
 
 ### Executive Summary Must-Haves
 
