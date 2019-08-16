@@ -35,14 +35,14 @@ The goal of this project is to have you complete a very common real-world task i
 
 In short, to pass this project, demonstrating the quality and thoughtfulness of your overall recommendation is at least as important as successfully building a Time-Series model!
 
-In order to successfully complete this project, you must have the following 4 deliverables:
-
+Online students should complete the following 4 deliverables for this project:
 
 * A well-documented **_Jupyter Notebook_** containing any code you've written for this project (use the notebook in this repo, `mod_4_starter_notebook.ipynb`). This work will need to be pushed to your GitHub repository in order to submit your project.
 * An organized **README.md** file in the GitHub repository that describes the contents of the repository. This file should be the source of information for navigating through the repository.
 * A **_[Blog post](https://github.com/learn-co-curriculum/dsc-welcome-blogging)_**.
 * An **_'Executive Summary' PowerPoint Presentation_** that explains your rationale and methodology for determining the best zipcodes for investment.
 
+For on-campus students, please talk to your instructor for a list of required project deliverables. 
 
 ### Jupyter Notebook Must-Haves
 
@@ -97,4 +97,4 @@ As always, this prresentation should also:
 
 ## Grading Rubric 
 
-Online students can find a PDF of the grading rubric [here](https://github.com/learn-co-curriculum/dsc-mod-4-project/blob/master/module4_project_rubric.pdf). On-campus students should contact their instructor.  
+Online students can find a PDF of the grading rubric for the project [here](https://github.com/learn-co-curriculum/dsc-mod-4-project/blob/master/module4_project_rubric.pdf). On-campus students should contact their instructor.  
