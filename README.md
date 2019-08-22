@@ -42,7 +42,7 @@ Online students should complete the following 4 deliverables for this project:
 * A **_[Blog post](https://github.com/learn-co-curriculum/dsc-welcome-blogging)_**.
 * An **_'Executive Summary' PowerPoint Presentation_** that explains your rationale and methodology for determining the best zipcodes for investment.
 
-For on-campus students, please talk to your instructor for a list of required project deliverables. 
+Note: On-campus students may have different deliverables, please speak with your instructor.
 
 ### Jupyter Notebook Must-Haves
 
@@ -97,4 +97,4 @@ As always, this prresentation should also:
 
 ## Grading Rubric 
 
-Online students can find a PDF of the grading rubric for the project [here](https://github.com/learn-co-curriculum/dsc-mod-4-project/blob/master/module4_project_rubric.pdf). On-campus students should contact their instructor.  
+Online students can find a PDF of the grading rubric for the project [here](https://github.com/learn-co-curriculum/dsc-mod-4-project/blob/master/module4_project_rubric.pdf). _Note: On-campus students may have different requirements, please speak with your instructor._
