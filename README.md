@@ -11,8 +11,7 @@ The project asks the student to identify the 5 "best" ZIP codes for investment, 
 
 ## My focus:  Sacramento metro area
 
-Because of the size of the dataset (over 14000 zip codes, each with over 260 monthly values), and because of time constraints, I primarily focused on the Sacramento metro area, where I have lived for a number of years.  I developed functions to visualize values averaged by city within a metro area, and across zip codes within cities in a metro area, using lists and dictionaries to iterate over the areas of interest.  Using this approach, I identified a subset of ZIP codes in the Sacramento region of possible interest.  I was able to run analyses of 19 ZIP codes, and identified 11 finalists.  From those, I selected 5 that I thought provided good (potentially great) returns, while limiting downside risk.  One of those ZIP codes was in El Dorado County, and the other four were in Placer County.  While there may be promising ZIP codes in both Sacramento and Yolo Counties, Sacramento City ZIP codes that I analyzed were not as competitive as those of Placer County.  I only analyzed one ZIP code in Yolo County (95616 in Davis), though others looked similar in terms of their pattern and trends.  It would probably be worthwhile to analyze one of the two ZIP codes in West Sacramento, as West Sac is an area that has been on the upswing for several years.  
-
+Because of the size of the dataset (over 14000 zip codes, each with over 260 monthly values), and because of time constraints, I primarily focused on the Sacramento metro area, where I have lived for a number of years.  
 
 #### Sacramento metro area (counties)
 
@@ -22,11 +21,25 @@ Because of the size of the dataset (over 14000 zip codes, each with over 260 mon
 
 <center><img src='Sac_metro_cities_map.png' height=80% width=80%>
 
+## Methodology, in brief
+
+I developed iterative functions to visualize values by city within a metro area and across zip codes within cities in a metro area, using lists and dictionaries to iterate through the geographic areas of interest.  Using this approach, I identified a subset of ZIP codes in the Sacramento region of possible interest.  
+
+I analyzed 19 ZIP codes and identified 11 finalists.  From those, I selected 5 that I thought provided good (potentially great) returns, while limiting downside risk.  One of those ZIP codes was in El Dorado County, and the other four were in Placer County.  While there may be promising ZIP codes in both Sacramento and Yolo Counties, Sacramento City ZIP codes that I analyzed were not as competitive as those of Placer County.  I only analyzed one ZIP code in Yolo County (95616 in Davis), though others looked similar in terms of their pattern and trends.  It would probably be worthwhile to analyze one of the two ZIP codes in West Sacramento, as West Sac is an area that has been on the upswing for several years.  
+
+
 ## Possible future directions
 
-While time limitations prevented a broader evaluation of investment opportunities across the country, the functions I developed allow visualizations of broader swaths of the data (e.g., values by metro area, values by city within a metro area, values by zip codes and cities within a metro area).  Creating visualizations at various geographic levels was very useful for identifying patterns that could signify promising investment opportunities.  From this effort, I identified some geographic areas that could be worthwhile to explore in future efforts.  
+Beyond analysis of at least one more ZIP code in the Sacramento area, I've identified several other possible future directions for this work:
+- While time limitations prevented a broader evaluation of investment opportunities across the country, the functions I developed allow visualizations of broader swaths of the data (e.g., values by metro area, values by city within a metro area, values by zip codes and cities within a metro area).  
+  - Creating visualizations at various geographic levels was very useful for identifying patterns that could signify promising investment opportunities.  
+  - From this effort, I identified some geographic areas, such as the Dallas-Fort Worth and the Pittsburg metro areas, that could be worthwhile to explore in future efforts.  
+- It could be interesting and potentially valuable to do some backtesting on the model to see how well it predicts the last 24 months for which we have data (May 2016 through April 2018).
+- Analyzing shorter time frames (e.g., 2013-2018)
+- Scaling investment by population size 
+- Construct a basket of investments (e.g., $10M, weighted by ZIP population?)
 
-## The notebook
+## A few words on the notebook that follows...
 
 The notebook below is what I used for performing my analyses and arriving at results.  Thus, it is technical and includes all code.  It will most likely be revised over time, so individuals interested in this work should check back periodically.  At the very end of this notebook is a table (small dataframe) that summarizes my analyses.  
 
