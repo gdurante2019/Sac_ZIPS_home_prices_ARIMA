@@ -3580,6 +3580,50 @@ def single_zip_boxplot(df, geog_area, col1 = 'value', col2 = 'Zip', figsize=(8, 
     
 ```
 
+### Plotting function:  city_zips_boxplot (boxplots of zip codes in a city)
+
+
+```python
+def city_zips_boxplot(df, city_zips, nrows, ncols, figsize=(18, 30)):
+    
+    '''Plots boxplots of each zipcode within a city.  Need to use dataframe with values by ZIP 
+    for just that CITY (or specify .loc in arguments that column 'City' == CITY in question).
+    Need LIST of ZIP codes for that particular CITY.  Need to specify nrows, ncols, and figsize.
+    '''
+    
+    fig = plt.figure(figsize=figsize)
+    
+    for i, zc in enumerate(city_zips, start=1):
+        ax = fig.add_subplot(nrows, ncols, i)
+        ts = df.loc[df['Zip'] == zc]
+        ts.boxplot(column = 'value', ax = ax)
+        ax.set_title(f'{zc}')
+        fig.tight_layout()
+
+```
+
+### Plotting function:  metro_zips_boxplot (boxplots by zip in metro area)
+
+
+```python
+def metro_zips_boxplot(df, metro_zips, nrows, ncols, figsize=(18, 100)):
+    
+    '''Plots boxplots of each zipcode within a city.  Need to use dataframe with values by ZIP 
+    for just that METRO area (or specify .loc in arguments that column 'MetroState' == METRO).
+    Need a LIST of ZIP codes within that METRO area.  Need to specify nrows, ncols, and figsize.
+    '''
+    
+    fig = plt.figure(figsize=figsize)
+    
+    for i, zc in enumerate(metro_zips, start=1):
+        ax = fig.add_subplot(nrows, ncols, i)
+        ts = df.loc[df['Zip'] == zc]
+        ts.boxplot(column = 'value', ax = ax)
+        ax.set_title(f'{zc}')
+        fig.tight_layout()
+
+```
+
 ### Plotting function:  metro_cities_boxplot (boxplots by city in metro area)
 
 
@@ -3599,6 +3643,31 @@ def metro_cities_boxplot(df, metro_cities, nrows, ncols, figsize=(18, 30)):
         ts.boxplot(column = 'value', ax = ax)
         ax.set_title(f'{city}')
         fig.tight_layout()
+
+```
+
+### Plotting function:  metro_cities_zips_boxplot (boxplots by city and zip code in metro area)
+
+
+```python
+def metro_cities_zips_boxplot(df, dict_metro_cities_zips, nrows, ncols, figsize=(18, 40)):
+    
+    '''Plots boxplots of all zip codes in each city within a metro area.  Need to use dataframe 
+    with values by ZIP code and CITY for just that METRO (or specify .loc in arguments that 
+    column 'MetroState' == METRO). Need DICTIONARY of ZIPS by CITY within that METRO area.  
+    Need to specify nrows, ncols, and figsize.
+    '''
+    
+    fig = plt.figure(figsize=figsize)
+    
+    for i, (city, zc) in enumerate(dict_metro_cities_zips.copy().items(), start=1):
+        ax = fig.add_subplot(nrows, ncols, i)
+        ax.set_title(f'{city}')
+        for i, zc in enumerate(dict_metro_cities_zips.copy()[city], start=1):
+            ts = df.loc[df['Zip'] == zc]
+            ts.boxplot(column = 'value', ax = ax)
+            ax.set_title(f'{city}')
+            fig.tight_layout()
 
 ```
 
@@ -3664,6 +3733,1230 @@ def plot_seasonal_decomp(ts):
     return fig, ax
 
 ```
+
+## Plotting Sacramento values by zip code, grouped by city or within a city
+
+### Plotting values by city
+
+
+```python
+plot_ts_cities(df_sac_cities, sac_metro_cities, col='value', figsize=(18, 150));
+
+```
+
+
+![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_122_0.png)
+
+
+
+```python
+plot_ts_cities(df_sac_cities, sac_metro_cities[:6], nrows = 3, ncols = 2, figsize=(18,14), col='value', legend=True);
+```
+
+
+![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_123_0.png)
+
+
+
+```python
+plot_ts_cities(df_sac_cities, sac_metro_cities[6:12], nrows = 3, ncols = 2, figsize=(18,14), col='value', legend=True);
+```
+
+
+![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_124_0.png)
+
+
+
+```python
+plot_ts_cities(df_sac_cities, sac_metro_cities[12:18], nrows = 3, ncols = 2, figsize=(18,14), col='value', legend=True);
+
+```
+
+
+![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_125_0.png)
+
+
+
+```python
+plot_ts_cities(df_sac_cities, sac_metro_cities[18:24], nrows = 3, ncols = 2, figsize=(16,14), col='value', legend=True)
+```
+
+
+
+
+    (<Figure size 1152x1008 with 6 Axes>,
+     <matplotlib.axes._subplots.AxesSubplot at 0x1c8c6924a8>)
+
+
+
+
+![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_126_1.png)
+
+
+
+```python
+plot_ts_cities(df_sac_cities, sac_metro_cities[24:30], nrows = 3, ncols = 2, figsize=(16,14), col='value', legend=True)
+```
+
+
+
+
+    (<Figure size 1152x1008 with 6 Axes>,
+     <matplotlib.axes._subplots.AxesSubplot at 0x1c8be346a0>)
+
+
+
+
+![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_127_1.png)
+
+
+
+```python
+plot_ts_cities(df_sac_cities, sac_metro_cities[30:36], nrows = 3, ncols = 2, figsize=(16,14), col='value', legend=True)
+```
+
+
+
+
+    (<Figure size 1152x1008 with 6 Axes>,
+     <matplotlib.axes._subplots.AxesSubplot at 0x1c8de3bc18>)
+
+
+
+
+![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_128_1.png)
+
+
+
+```python
+plot_ts_cities(df_sac_cities, sac_metro_cities[36:42], nrows = 3, ncols = 2, figsize=(16,14), col='value', legend=True)
+```
+
+
+
+
+    (<Figure size 1152x1008 with 6 Axes>,
+     <matplotlib.axes._subplots.AxesSubplot at 0x1c6bcec748>)
+
+
+
+
+![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_129_1.png)
+
+
+
+```python
+plot_ts_cities(df_sac_cities, sac_metro_cities[42:48], nrows = 3, ncols = 2, figsize=(16,14), col='value', legend=True)
+```
+
+
+
+
+    (<Figure size 1152x1008 with 6 Axes>,
+     <matplotlib.axes._subplots.AxesSubplot at 0x1c6beea400>)
+
+
+
+
+![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_130_1.png)
+
+
+
+```python
+plot_ts_cities(df_sac_cities, sac_metro_cities[48:54], nrows = 3, ncols = 2, figsize=(16,14), col='value', legend=True)
+```
+
+
+
+
+    (<Figure size 1152x1008 with 6 Axes>,
+     <matplotlib.axes._subplots.AxesSubplot at 0x1c56bb5d68>)
+
+
+
+
+![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_131_1.png)
+
+
+
+```python
+plot_ts_cities(df_sac_cities, sac_metro_cities[54:56], nrows = 3, ncols = 2, figsize=(16,14), col='value', legend=True)
+```
+
+
+
+
+    (<Figure size 1152x1008 with 2 Axes>,
+     <matplotlib.axes._subplots.AxesSubplot at 0x1c52b7d198>)
+
+
+
+
+![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_132_1.png)
+
+
+### Plots of zip codes within City of Sacramento
+
+
+```python
+df_sacto_city_zips = df_sac.loc[df_sac['City'] == 'Sacramento']
+df_sacto_city_zips.head()
+```
+
+
+
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Metro</th>
+      <th>MetroState</th>
+      <th>CountyName</th>
+      <th>City</th>
+      <th>Zip</th>
+      <th>value</th>
+    </tr>
+    <tr>
+      <th>time</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>1996-04-01</td>
+      <td>Sacramento</td>
+      <td>Sacramento CA</td>
+      <td>Sacramento</td>
+      <td>Sacramento</td>
+      <td>95660</td>
+      <td>73200.0</td>
+    </tr>
+    <tr>
+      <td>1996-05-01</td>
+      <td>Sacramento</td>
+      <td>Sacramento CA</td>
+      <td>Sacramento</td>
+      <td>Sacramento</td>
+      <td>95660</td>
+      <td>72500.0</td>
+    </tr>
+    <tr>
+      <td>1996-06-01</td>
+      <td>Sacramento</td>
+      <td>Sacramento CA</td>
+      <td>Sacramento</td>
+      <td>Sacramento</td>
+      <td>95660</td>
+      <td>71900.0</td>
+    </tr>
+    <tr>
+      <td>1996-07-01</td>
+      <td>Sacramento</td>
+      <td>Sacramento CA</td>
+      <td>Sacramento</td>
+      <td>Sacramento</td>
+      <td>95660</td>
+      <td>71300.0</td>
+    </tr>
+    <tr>
+      <td>1996-08-01</td>
+      <td>Sacramento</td>
+      <td>Sacramento CA</td>
+      <td>Sacramento</td>
+      <td>Sacramento</td>
+      <td>95660</td>
+      <td>70700.0</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+
+
+```python
+df_sacto_city_zips['Zip'].value_counts()
+```
+
+
+
+
+    95842    265
+    95824    265
+    95832    265
+    95841    265
+    95819    265
+    95834    265
+    95811    265
+    95829    265
+    95660    265
+    95835    265
+    95823    265
+    95843    265
+    95816    265
+    95838    265
+    95818    265
+    95817    265
+    95822    265
+    95831    265
+    95820    265
+    95833    265
+    95815     58
+    Name: Zip, dtype: int64
+
+
+
+
+```python
+sacto_zips = list(set(df_sacto_city_zips['Zip']))
+len(sacto_zips)
+```
+
+
+
+
+    21
+
+
+
+
+```python
+ts = df_sacto_city_zips['value'].loc[df_sacto_city_zips['Zip'] == '95823']
+ts.head()
+```
+
+
+
+
+    time
+    1996-04-01    91500.0
+    1996-05-01    90800.0
+    1996-06-01    90000.0
+    1996-07-01    89200.0
+    1996-08-01    88400.0
+    Name: value, dtype: float64
+
+
+
+
+```python
+fig, ax = plot_ts_zips(df_sac, sacto_zips, nrows=11, ncols=2, figsize=(18, 50), legend=True);
+
+```
+
+
+![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_138_0.png)
+
+
+### Plotting cities and zip codes within Sacramento Metro area 
+
+
+```python
+fig, ax = plot_ts_zips_by_city(df_sac, dict_sac_zips_cities, figsize=(18, 120), nrows=30, ncols=2, legend=False);
+
+```
+
+
+![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_140_0.png)
+
+
+
+```python
+fig, ax = plot_ts_zips_by_city(df_sac, dict_0_6, figsize=(18, 14), nrows=3, ncols=2, legend=True);
+```
+
+
+![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_141_0.png)
+
+
+
+```python
+fig, ax = plot_ts_zips_by_city(df_sac, dict_6_12, figsize=(18, 14), nrows=3, ncols=2, legend=True);
+```
+
+
+![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_142_0.png)
+
+
+
+```python
+fig, ax = plot_ts_zips_by_city(df_sac, dict_12_18, figsize=(18, 14), nrows=3, ncols=2, legend=True);
+```
+
+
+![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_143_0.png)
+
+
+
+```python
+fig, ax = plot_ts_zips_by_city(df_sac, dict_18_24, figsize=(18, 14), nrows=3, ncols=2, legend=True);
+```
+
+
+![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_144_0.png)
+
+
+
+```python
+fig, ax = plot_ts_zips_by_city(df_sac, dict_24_30, figsize=(18, 14), nrows=3, ncols=2, legend=True);
+```
+
+
+![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_145_0.png)
+
+
+
+```python
+fig, ax = plot_ts_zips_by_city(df_sac, dict_30_36, figsize=(18, 14), nrows=3, ncols=2, legend=True);
+```
+
+
+![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_146_0.png)
+
+
+
+```python
+fig, ax = plot_ts_zips_by_city(df_sac, dict_36_42, figsize=(18, 14), nrows=3, ncols=2, legend=True);
+```
+
+
+![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_147_0.png)
+
+
+
+```python
+fig, ax = plot_ts_zips_by_city(df_sac, dict_42_48, figsize=(16, 13), nrows=3, ncols=2, legend=False);
+```
+
+
+![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_148_0.png)
+
+
+
+```python
+fig, ax = plot_ts_zips_by_city(df_sac, dict_48_54, figsize=(16, 13), nrows=3, ncols=2, legend=True);
+```
+
+
+![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_149_0.png)
+
+
+
+```python
+fig, ax = plot_ts_zips_by_city(df_sac, dict_54_56, figsize=(16, 13), nrows=3, ncols=2, legend=True);
+```
+
+
+![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_150_0.png)
+
+
+### Plotting boxplots for each city in Sacto Metro region
+
+
+```python
+metro_cities_boxplot(df_sac, sac_metro_cities, nrows=10, ncols=6, figsize=(18, 40))
+
+```
+
+
+![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_152_0.png)
+
+
+### Plotting boxplots for each zip in Sacramento metro region
+
+
+```python
+metro_zips_boxplot(df_sac, sac_metro_zips, nrows = 12, ncols=8, figsize=(18, 60))
+
+```
+
+
+![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_154_0.png)
+
+
+
+```python
+metro_cities_zips_boxplot(df_sac, dict_sac_zips_cities, nrows=14, ncols=6, figsize=(18, 50))
+
+```
+
+
+![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_155_0.png)
+
+
+
+```python
+df_sac_city = df_sac.loc[df_sac['City'] == 'Sacramento']
+
+df_sac_city.head()
+```
+
+
+
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Metro</th>
+      <th>MetroState</th>
+      <th>CountyName</th>
+      <th>City</th>
+      <th>Zip</th>
+      <th>value</th>
+    </tr>
+    <tr>
+      <th>time</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>1996-04-01</td>
+      <td>Sacramento</td>
+      <td>Sacramento CA</td>
+      <td>Sacramento</td>
+      <td>Sacramento</td>
+      <td>95660</td>
+      <td>73200.0</td>
+    </tr>
+    <tr>
+      <td>1996-05-01</td>
+      <td>Sacramento</td>
+      <td>Sacramento CA</td>
+      <td>Sacramento</td>
+      <td>Sacramento</td>
+      <td>95660</td>
+      <td>72500.0</td>
+    </tr>
+    <tr>
+      <td>1996-06-01</td>
+      <td>Sacramento</td>
+      <td>Sacramento CA</td>
+      <td>Sacramento</td>
+      <td>Sacramento</td>
+      <td>95660</td>
+      <td>71900.0</td>
+    </tr>
+    <tr>
+      <td>1996-07-01</td>
+      <td>Sacramento</td>
+      <td>Sacramento CA</td>
+      <td>Sacramento</td>
+      <td>Sacramento</td>
+      <td>95660</td>
+      <td>71300.0</td>
+    </tr>
+    <tr>
+      <td>1996-08-01</td>
+      <td>Sacramento</td>
+      <td>Sacramento CA</td>
+      <td>Sacramento</td>
+      <td>Sacramento</td>
+      <td>95660</td>
+      <td>70700.0</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+
+
+```python
+sacto_zips = list(set(df_sac_city['Zip']))
+len(sacto_zips)
+
+```
+
+
+
+
+    21
+
+
+
+
+```python
+df_sac_city.boxplot(by='Zip', column = 'value', figsize=(16, 6))
+
+```
+
+
+
+
+    <matplotlib.axes._subplots.AxesSubplot at 0x1c8be19208>
+
+
+
+
+![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_158_1.png)
+
+
+### Violin plot for Sacramento city zip codes
+
+
+```python
+import seaborn as sns
+
+```
+
+
+```python
+# got figure size  modification example from https://exceptionshub.com/how-do-i-change-the-figure-size-for-a-seaborn-plot.html
+
+# fig, ax = plt.subplots()
+# fig.set_size_inches(16, 6)
+# sns.violinplot(x="Zip", y="value", data=df_44, scale="count", inner="stick", ax=ax)
+
+def violin_plt(x, y, data, scale="width", inner="quartile", set_size_inches=(16, 6)):
+    
+    '''Plots zip codes within a city on one violin plot.  Set defaults to x='Zip', y='value', 
+    data=df_sac_city, scale="width", inner="quartile", set_size_inches=(16, 6), ax=ax)
+    '''
+    
+    import seaborn as sns
+    fig, ax = plt.subplots()
+    fig.set_size_inches
+    sns.violinplot(x, y, data, scale, inner, ax)
+    
+    
+```
+
+
+```python
+# got figure size  modification example from https://exceptionshub.com/how-do-i-change-the-figure-size-for-a-seaborn-plot.html
+
+# fig, ax = plt.subplots()
+# fig.set_size_inches(16, 6)
+# sns.violinplot(x="Zip", y="value", data=df_44, scale="count", inner="stick", ax=ax)
+
+import seaborn as sns
+
+fig, ax = plt.subplots()
+fig.set_size_inches(16, 6)
+sns.violinplot(x="Zip", y="value", data=df_sac_city, scale="width", inner="quartile", ax=ax)
+```
+
+
+
+
+    <matplotlib.axes._subplots.AxesSubplot at 0x1c6b9af908>
+
+
+
+
+![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_162_1.png)
+
+
+
+```python
+df_sac_city_1996_1999 = df_sac_city.loc['1996-04-01':'1999-12-01']
+df_sac_city_1996_1999.tail()
+```
+
+
+
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Metro</th>
+      <th>MetroState</th>
+      <th>CountyName</th>
+      <th>City</th>
+      <th>Zip</th>
+      <th>value</th>
+    </tr>
+    <tr>
+      <th>time</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>1999-08-01</td>
+      <td>Sacramento</td>
+      <td>Sacramento CA</td>
+      <td>Sacramento</td>
+      <td>Sacramento</td>
+      <td>95843</td>
+      <td>146400.0</td>
+    </tr>
+    <tr>
+      <td>1999-09-01</td>
+      <td>Sacramento</td>
+      <td>Sacramento CA</td>
+      <td>Sacramento</td>
+      <td>Sacramento</td>
+      <td>95843</td>
+      <td>147600.0</td>
+    </tr>
+    <tr>
+      <td>1999-10-01</td>
+      <td>Sacramento</td>
+      <td>Sacramento CA</td>
+      <td>Sacramento</td>
+      <td>Sacramento</td>
+      <td>95843</td>
+      <td>149000.0</td>
+    </tr>
+    <tr>
+      <td>1999-11-01</td>
+      <td>Sacramento</td>
+      <td>Sacramento CA</td>
+      <td>Sacramento</td>
+      <td>Sacramento</td>
+      <td>95843</td>
+      <td>150300.0</td>
+    </tr>
+    <tr>
+      <td>1999-12-01</td>
+      <td>Sacramento</td>
+      <td>Sacramento CA</td>
+      <td>Sacramento</td>
+      <td>Sacramento</td>
+      <td>95843</td>
+      <td>151800.0</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+
+
+```python
+fig, ax = plt.subplots()
+fig.set_size_inches(16, 6)
+sns.violinplot(x="Zip", y="value", data=df_sac_city_1996_1999, scale="width", inner="quartile", ax=ax)
+```
+
+
+
+
+    <matplotlib.axes._subplots.AxesSubplot at 0x1c8f067898>
+
+
+
+
+![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_164_1.png)
+
+
+
+```python
+df_sac_city_2000_2003 = df_sac_city.loc['2000-01-01':'2003-12-01']
+df_sac_city_2000_2003.head()
+```
+
+
+
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Metro</th>
+      <th>MetroState</th>
+      <th>CountyName</th>
+      <th>City</th>
+      <th>Zip</th>
+      <th>value</th>
+    </tr>
+    <tr>
+      <th>time</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>2000-01-01</td>
+      <td>Sacramento</td>
+      <td>Sacramento CA</td>
+      <td>Sacramento</td>
+      <td>Sacramento</td>
+      <td>95660</td>
+      <td>89100.0</td>
+    </tr>
+    <tr>
+      <td>2000-02-01</td>
+      <td>Sacramento</td>
+      <td>Sacramento CA</td>
+      <td>Sacramento</td>
+      <td>Sacramento</td>
+      <td>95660</td>
+      <td>90100.0</td>
+    </tr>
+    <tr>
+      <td>2000-03-01</td>
+      <td>Sacramento</td>
+      <td>Sacramento CA</td>
+      <td>Sacramento</td>
+      <td>Sacramento</td>
+      <td>95660</td>
+      <td>91200.0</td>
+    </tr>
+    <tr>
+      <td>2000-04-01</td>
+      <td>Sacramento</td>
+      <td>Sacramento CA</td>
+      <td>Sacramento</td>
+      <td>Sacramento</td>
+      <td>95660</td>
+      <td>92200.0</td>
+    </tr>
+    <tr>
+      <td>2000-05-01</td>
+      <td>Sacramento</td>
+      <td>Sacramento CA</td>
+      <td>Sacramento</td>
+      <td>Sacramento</td>
+      <td>95660</td>
+      <td>93300.0</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+
+
+```python
+fig, ax = plt.subplots()
+fig.set_size_inches(16, 6)
+sns.violinplot(x="Zip", y="value", data=df_sac_city_2000_2003, scale="width", inner="quartile", ax=ax)
+```
+
+
+
+
+    <matplotlib.axes._subplots.AxesSubplot at 0x1c844bc940>
+
+
+
+
+![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_166_1.png)
+
+
+
+```python
+df_sac_city_2004_2006 = df_sac_city.loc['2004-01-01':'2006-12-01']
+df_sac_city_2004_2006.head()
+```
+
+
+
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Metro</th>
+      <th>MetroState</th>
+      <th>CountyName</th>
+      <th>City</th>
+      <th>Zip</th>
+      <th>value</th>
+    </tr>
+    <tr>
+      <th>time</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>2004-01-01</td>
+      <td>Sacramento</td>
+      <td>Sacramento CA</td>
+      <td>Sacramento</td>
+      <td>Sacramento</td>
+      <td>95660</td>
+      <td>191900.0</td>
+    </tr>
+    <tr>
+      <td>2004-02-01</td>
+      <td>Sacramento</td>
+      <td>Sacramento CA</td>
+      <td>Sacramento</td>
+      <td>Sacramento</td>
+      <td>95660</td>
+      <td>195700.0</td>
+    </tr>
+    <tr>
+      <td>2004-03-01</td>
+      <td>Sacramento</td>
+      <td>Sacramento CA</td>
+      <td>Sacramento</td>
+      <td>Sacramento</td>
+      <td>95660</td>
+      <td>200200.0</td>
+    </tr>
+    <tr>
+      <td>2004-04-01</td>
+      <td>Sacramento</td>
+      <td>Sacramento CA</td>
+      <td>Sacramento</td>
+      <td>Sacramento</td>
+      <td>95660</td>
+      <td>205300.0</td>
+    </tr>
+    <tr>
+      <td>2004-05-01</td>
+      <td>Sacramento</td>
+      <td>Sacramento CA</td>
+      <td>Sacramento</td>
+      <td>Sacramento</td>
+      <td>95660</td>
+      <td>211100.0</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+
+
+```python
+fig, ax = plt.subplots()
+fig.set_size_inches(16, 6)
+sns.violinplot(x="Zip", y="value", data=df_sac_city_2004_2006, scale="width", inner="quartile", ax=ax)
+```
+
+
+
+
+    <matplotlib.axes._subplots.AxesSubplot at 0x1c8e004748>
+
+
+
+
+![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_168_1.png)
+
+
+
+```python
+df_sac_city_2007_2012 = df_sac_city.loc['2007-01-01':'2012-12-01']
+df_sac_city_2007_2012.head()
+```
+
+
+
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Metro</th>
+      <th>MetroState</th>
+      <th>CountyName</th>
+      <th>City</th>
+      <th>Zip</th>
+      <th>value</th>
+    </tr>
+    <tr>
+      <th>time</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>2007-01-01</td>
+      <td>Sacramento</td>
+      <td>Sacramento CA</td>
+      <td>Sacramento</td>
+      <td>Sacramento</td>
+      <td>95660</td>
+      <td>264800.0</td>
+    </tr>
+    <tr>
+      <td>2007-02-01</td>
+      <td>Sacramento</td>
+      <td>Sacramento CA</td>
+      <td>Sacramento</td>
+      <td>Sacramento</td>
+      <td>95660</td>
+      <td>263000.0</td>
+    </tr>
+    <tr>
+      <td>2007-03-01</td>
+      <td>Sacramento</td>
+      <td>Sacramento CA</td>
+      <td>Sacramento</td>
+      <td>Sacramento</td>
+      <td>95660</td>
+      <td>261000.0</td>
+    </tr>
+    <tr>
+      <td>2007-04-01</td>
+      <td>Sacramento</td>
+      <td>Sacramento CA</td>
+      <td>Sacramento</td>
+      <td>Sacramento</td>
+      <td>95660</td>
+      <td>258400.0</td>
+    </tr>
+    <tr>
+      <td>2007-05-01</td>
+      <td>Sacramento</td>
+      <td>Sacramento CA</td>
+      <td>Sacramento</td>
+      <td>Sacramento</td>
+      <td>95660</td>
+      <td>254800.0</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+
+
+```python
+fig, ax = plt.subplots()
+fig.set_size_inches(16, 6)
+sns.violinplot(x="Zip", y="value", data=df_sac_city_2007_2012, scale="width", inner="quartile", ax=ax)
+```
+
+
+
+
+    <matplotlib.axes._subplots.AxesSubplot at 0x1c85e44080>
+
+
+
+
+![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_170_1.png)
+
+
+
+```python
+df_sac_city_2013_2018 = df_sac_city.loc['2013-01-01':'2018']
+df_sac_city_2013_2018.tail()
+```
+
+
+
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Metro</th>
+      <th>MetroState</th>
+      <th>CountyName</th>
+      <th>City</th>
+      <th>Zip</th>
+      <th>value</th>
+    </tr>
+    <tr>
+      <th>time</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>2017-12-01</td>
+      <td>Sacramento</td>
+      <td>Sacramento CA</td>
+      <td>Sacramento</td>
+      <td>Sacramento</td>
+      <td>95843</td>
+      <td>345600.0</td>
+    </tr>
+    <tr>
+      <td>2018-01-01</td>
+      <td>Sacramento</td>
+      <td>Sacramento CA</td>
+      <td>Sacramento</td>
+      <td>Sacramento</td>
+      <td>95843</td>
+      <td>350100.0</td>
+    </tr>
+    <tr>
+      <td>2018-02-01</td>
+      <td>Sacramento</td>
+      <td>Sacramento CA</td>
+      <td>Sacramento</td>
+      <td>Sacramento</td>
+      <td>95843</td>
+      <td>352500.0</td>
+    </tr>
+    <tr>
+      <td>2018-03-01</td>
+      <td>Sacramento</td>
+      <td>Sacramento CA</td>
+      <td>Sacramento</td>
+      <td>Sacramento</td>
+      <td>95843</td>
+      <td>352400.0</td>
+    </tr>
+    <tr>
+      <td>2018-04-01</td>
+      <td>Sacramento</td>
+      <td>Sacramento CA</td>
+      <td>Sacramento</td>
+      <td>Sacramento</td>
+      <td>95843</td>
+      <td>351400.0</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+
+
+```python
+fig, ax = plt.subplots()
+fig.set_size_inches(16, 6)
+sns.violinplot(x="Zip", y="value", data=df_sac_city_2013_2018, scale="width", inner="quartile", ax=ax)
+```
+
+
+
+
+    <matplotlib.axes._subplots.AxesSubplot at 0x1c84979fd0>
+
+
+
+
+![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_172_1.png)
+
 
 # Step 4:  Parameter tuning
 
@@ -4429,7 +5722,7 @@ plot_single_geog(df_melt, geog_area, 'value', 'Zip', figsize=(12, 6), fontsize1=
 ```
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_169_0.png)
+![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_228_0.png)
 
 
 
@@ -4440,7 +5733,7 @@ plt.title(geog_area);
 ```
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_170_0.png)
+![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_229_0.png)
 
 
 
@@ -4449,7 +5742,7 @@ plot_acf_pacf(ts.value)
 ```
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_171_0.png)
+![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_230_0.png)
 
 
 
@@ -4460,7 +5753,7 @@ plot_seasonal_decomp(ts.value);
 ```
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_172_0.png)
+![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_231_0.png)
 
 
 ### ARIMA parameters tuning
@@ -4578,7 +5871,7 @@ arima_forecast_enter_pdq(ts, geog_area, city, county, best_cfg, confint=2)
 
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_178_2.png)
+![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_237_2.png)
 
 
 
@@ -4753,7 +6046,7 @@ plot_single_geog(df_melt, geog_area, 'value', 'Zip', figsize=(12, 6), fontsize1=
 ```
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_192_0.png)
+![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_251_0.png)
 
 
 
@@ -4764,7 +6057,7 @@ plt.title(geog_area);
 ```
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_193_0.png)
+![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_252_0.png)
 
 
 
@@ -4773,7 +6066,7 @@ plot_acf_pacf(ts.value)
 ```
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_194_0.png)
+![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_253_0.png)
 
 
 
@@ -4784,7 +6077,7 @@ plot_seasonal_decomp(ts.value);
 ```
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_195_0.png)
+![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_254_0.png)
 
 
 ### ARIMA parameters tuning
@@ -4899,7 +6192,7 @@ arima_forecast_enter_pdq(ts, geog_area, city, county, best_cfg, confint=2)
 
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_200_2.png)
+![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_259_2.png)
 
 
 
@@ -7409,7 +8702,7 @@ plot_single_geog(df_sac, geog_area, 'value', 'Zip', figsize=(12, 6), fontsize1=1
 ```
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_213_0.png)
+![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_272_0.png)
 
 
 
@@ -7420,7 +8713,7 @@ plt.title(geog_area);
 ```
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_214_0.png)
+![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_273_0.png)
 
 
 
@@ -7454,7 +8747,7 @@ plot_acf_pacf(ts_values, figsize=(10,6), lags=15)
 ```
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_217_0.png)
+![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_276_0.png)
 
 
 
@@ -7463,7 +8756,7 @@ plot_seasonal_decomp(ts_values);
 ```
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_218_0.png)
+![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_277_0.png)
 
 
 ### ARIMA parameters tuning
@@ -7589,7 +8882,7 @@ arima_forecast_enter_pdq(ts, geog_area, city, county, best_cfg, confint=2)
 
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_223_2.png)
+![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_282_2.png)
 
 
 
@@ -7857,7 +9150,7 @@ plot_single_geog(df_melt, geog_area, 'value', 'Zip', figsize=(12, 6), fontsize1=
 ```
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_238_0.png)
+![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_297_0.png)
 
 
 
@@ -7868,7 +9161,7 @@ plt.title(geog_area);
 ```
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_239_0.png)
+![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_298_0.png)
 
 
 
@@ -7877,7 +9170,7 @@ plot_acf_pacf(ts.value)
 ```
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_240_0.png)
+![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_299_0.png)
 
 
 
@@ -7888,7 +9181,7 @@ plot_seasonal_decomp(ts.value);
 ```
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_241_0.png)
+![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_300_0.png)
 
 
 ### ARIMA parameters tuning
@@ -8014,7 +9307,7 @@ arima_forecast_enter_pdq(ts, geog_area, city, county, best_cfg, confint=2)
 
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_246_2.png)
+![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_305_2.png)
 
 
 
@@ -8282,7 +9575,7 @@ plot_single_geog(df_melt, geog_area, 'value', 'Zip', figsize=(12, 6), fontsize1=
 ```
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_261_0.png)
+![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_320_0.png)
 
 
 
@@ -8293,7 +9586,7 @@ plt.title(geog_area);
 ```
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_262_0.png)
+![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_321_0.png)
 
 
 
@@ -8302,7 +9595,7 @@ plot_acf_pacf(ts.value)
 ```
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_263_0.png)
+![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_322_0.png)
 
 
 
@@ -8313,7 +9606,7 @@ plot_seasonal_decomp(ts.value);
 ```
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_264_0.png)
+![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_323_0.png)
 
 
 ### ARIMA parameters tuning
@@ -8446,7 +9739,7 @@ arima_forecast_enter_pdq(ts, geog_area, city, county, best_cfg, confint=2)
 
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_269_2.png)
+![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_328_2.png)
 
 
 
@@ -8718,7 +10011,7 @@ plot_single_geog(df_melt, geog_area, 'value', 'Zip', figsize=(12, 6), fontsize1=
 ```
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_284_0.png)
+![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_343_0.png)
 
 
 
@@ -8729,7 +10022,7 @@ plt.title(geog_area);
 ```
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_285_0.png)
+![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_344_0.png)
 
 
 
@@ -8738,7 +10031,7 @@ plot_acf_pacf(ts.value)
 ```
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_286_0.png)
+![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_345_0.png)
 
 
 
@@ -8749,7 +10042,7 @@ plot_seasonal_decomp(ts.value);
 ```
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_287_0.png)
+![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_346_0.png)
 
 
 ### ARIMA parameters tuning
@@ -8871,7 +10164,7 @@ arima_forecast_enter_pdq(ts, geog_area, city, county, best_cfg, confint=2)
 
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_292_2.png)
+![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_351_2.png)
 
 
 
@@ -9122,7 +10415,7 @@ plot_single_geog(df_melt, geog_area, 'value', 'Zip', figsize=(12, 6), fontsize1=
 ```
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_307_0.png)
+![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_366_0.png)
 
 
 
@@ -9133,7 +10426,7 @@ plt.title(geog_area);
 ```
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_308_0.png)
+![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_367_0.png)
 
 
 
@@ -9142,7 +10435,7 @@ plot_acf_pacf(ts.value)
 ```
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_309_0.png)
+![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_368_0.png)
 
 
 
@@ -9153,7 +10446,7 @@ plot_seasonal_decomp(ts.value);
 ```
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_310_0.png)
+![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_369_0.png)
 
 
 ### ARIMA parameters tuning
@@ -9291,7 +10584,7 @@ arima_forecast_enter_pdq(ts, geog_area, city, county, best_cfg, confint=2)
 
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_315_2.png)
+![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_374_2.png)
 
 
 
@@ -9579,7 +10872,7 @@ plot_single_geog(df_melt, geog_area, 'value', 'Zip', figsize=(12, 6), fontsize1=
 ```
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_330_0.png)
+![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_389_0.png)
 
 
 
@@ -9590,7 +10883,7 @@ plt.title(geog_area);
 ```
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_331_0.png)
+![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_390_0.png)
 
 
 
@@ -9599,7 +10892,7 @@ plot_acf_pacf(ts.value)
 ```
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_332_0.png)
+![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_391_0.png)
 
 
 
@@ -9610,7 +10903,7 @@ plot_seasonal_decomp(ts.value);
 ```
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_333_0.png)
+![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_392_0.png)
 
 
 ### ARIMA parameters tuning
@@ -9772,7 +11065,7 @@ arima_forecast_enter_pdq(ts, geog_area, city, county, best_cfg, confint=2)
 
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_338_2.png)
+![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_397_2.png)
 
 
 
@@ -10089,7 +11382,7 @@ plot_single_geog(df_melt, geog_area, 'value', 'Zip', figsize=(12, 6), fontsize1=
 ```
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_353_0.png)
+![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_412_0.png)
 
 
 
@@ -10100,7 +11393,7 @@ plt.title(geog_area);
 ```
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_354_0.png)
+![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_413_0.png)
 
 
 
@@ -10109,7 +11402,7 @@ plot_acf_pacf(ts.value)
 ```
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_355_0.png)
+![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_414_0.png)
 
 
 
@@ -10120,7 +11413,7 @@ plot_seasonal_decomp(ts.value);
 ```
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_356_0.png)
+![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_415_0.png)
 
 
 ### ARIMA parameters tuning
@@ -10299,7 +11592,7 @@ arima_forecast_enter_pdq(ts, geog_area, city, county, best_cfg, confint=2)
 
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_361_2.png)
+![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_420_2.png)
 
 
 
@@ -10632,7 +11925,7 @@ plot_single_geog(df_melt, geog_area, 'value', 'Zip', figsize=(12, 6), fontsize1=
 ```
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_376_0.png)
+![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_435_0.png)
 
 
 
@@ -10643,7 +11936,7 @@ plt.title(geog_area);
 ```
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_377_0.png)
+![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_436_0.png)
 
 
 
@@ -10652,7 +11945,7 @@ plot_acf_pacf(ts.value)
 ```
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_378_0.png)
+![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_437_0.png)
 
 
 
@@ -10663,7 +11956,7 @@ plot_seasonal_decomp(ts.value);
 ```
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_379_0.png)
+![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_438_0.png)
 
 
 ### ARIMA parameters tuning
@@ -10853,7 +12146,7 @@ arima_forecast_enter_pdq(ts, geog_area, city, county, best_cfg, confint=2)
 
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_384_2.png)
+![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_443_2.png)
 
 
 
@@ -11202,7 +12495,7 @@ plot_single_geog(df_melt, geog_area, 'value', 'Zip', figsize=(12, 6), fontsize1=
 ```
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_399_0.png)
+![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_458_0.png)
 
 
 
@@ -11213,7 +12506,7 @@ plt.title(geog_area);
 ```
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_400_0.png)
+![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_459_0.png)
 
 
 
@@ -11222,7 +12515,7 @@ plot_acf_pacf(ts.value)
 ```
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_401_0.png)
+![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_460_0.png)
 
 
 
@@ -11233,7 +12526,7 @@ plot_seasonal_decomp(ts.value);
 ```
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_402_0.png)
+![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_461_0.png)
 
 
 ### ARIMA parameters tuning
@@ -11441,7 +12734,7 @@ arima_forecast_enter_pdq(ts, geog_area, city, county, best_cfg, confint=2)
 
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_407_2.png)
+![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_466_2.png)
 
 
 
@@ -11794,7 +13087,7 @@ plot_single_geog(df_melt, geog_area, 'value', 'Zip', figsize=(12, 6), fontsize1=
 ```
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_421_0.png)
+![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_480_0.png)
 
 
 
@@ -11805,7 +13098,7 @@ plt.title(geog_area);
 ```
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_422_0.png)
+![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_481_0.png)
 
 
 
@@ -11814,7 +13107,7 @@ plot_acf_pacf(ts.value)
 ```
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_423_0.png)
+![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_482_0.png)
 
 
 
@@ -11825,7 +13118,7 @@ plot_seasonal_decomp(ts.value);
 ```
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_424_0.png)
+![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_483_0.png)
 
 
 ### ARIMA parameters tuning
@@ -12068,7 +13361,7 @@ arima_forecast_enter_pdq(ts, geog_area, city, county, best_cfg, confint=2)
 
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_429_2.png)
+![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_488_2.png)
 
 
 
@@ -12457,7 +13750,7 @@ plot_single_geog(df_melt, geog_area, 'value', 'Zip', figsize=(12, 6), fontsize1=
 ```
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_444_0.png)
+![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_503_0.png)
 
 
 
@@ -12468,7 +13761,7 @@ plt.title(geog_area);
 ```
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_445_0.png)
+![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_504_0.png)
 
 
 
@@ -12477,7 +13770,7 @@ plot_acf_pacf(ts.value)
 ```
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_446_0.png)
+![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_505_0.png)
 
 
 
@@ -12488,7 +13781,7 @@ plot_seasonal_decomp(ts.value);
 ```
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_447_0.png)
+![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_506_0.png)
 
 
 ### ARIMA parameters tuning
@@ -12728,7 +14021,7 @@ arima_forecast_enter_pdq(ts, geog_area, city, county, best_cfg, confint=2)
 
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_452_2.png)
+![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_511_2.png)
 
 
 
@@ -13128,7 +14421,7 @@ plot_single_geog(df_melt, geog_area, 'value', 'Zip', figsize=(12, 6), fontsize1=
 ```
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_467_0.png)
+![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_526_0.png)
 
 
 
@@ -13139,7 +14432,7 @@ plt.title(geog_area);
 ```
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_468_0.png)
+![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_527_0.png)
 
 
 
@@ -13148,7 +14441,7 @@ plot_acf_pacf(ts.value)
 ```
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_469_0.png)
+![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_528_0.png)
 
 
 
@@ -13159,7 +14452,7 @@ plot_seasonal_decomp(ts.value);
 ```
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_470_0.png)
+![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_529_0.png)
 
 
 ### ARIMA parameters tuning
@@ -13429,7 +14722,7 @@ arima_forecast_enter_pdq(ts, geog_area, city, county, best_cfg, confint=2)
 
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_475_2.png)
+![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_534_2.png)
 
 
 
@@ -13841,7 +15134,7 @@ plot_single_geog(df_melt, geog_area, 'value', 'Zip', figsize=(12, 6), fontsize1=
 ```
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_490_0.png)
+![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_549_0.png)
 
 
 
@@ -13852,7 +15145,7 @@ plt.title(geog_area);
 ```
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_491_0.png)
+![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_550_0.png)
 
 
 
@@ -13861,7 +15154,7 @@ plot_acf_pacf(ts.value)
 ```
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_492_0.png)
+![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_551_0.png)
 
 
 
@@ -13872,7 +15165,7 @@ plot_seasonal_decomp(ts.value);
 ```
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_493_0.png)
+![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_552_0.png)
 
 
 ### ARIMA parameters tuning
@@ -14133,7 +15426,7 @@ arima_forecast_enter_pdq(ts, geog_area, city, county, best_cfg, confint=2)
 
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_498_2.png)
+![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_557_2.png)
 
 
 
@@ -14556,7 +15849,7 @@ plot_single_geog(df_melt, geog_area, 'value', 'Zip', figsize=(12, 6), fontsize1=
 ```
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_513_0.png)
+![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_572_0.png)
 
 
 
@@ -14567,7 +15860,7 @@ plt.title(geog_area);
 ```
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_514_0.png)
+![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_573_0.png)
 
 
 
@@ -14576,7 +15869,7 @@ plot_acf_pacf(ts.value)
 ```
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_515_0.png)
+![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_574_0.png)
 
 
 
@@ -14587,7 +15880,7 @@ plot_seasonal_decomp(ts.value);
 ```
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_516_0.png)
+![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_575_0.png)
 
 
 ### ARIMA parameters tuning
@@ -14884,7 +16177,7 @@ arima_forecast_enter_pdq(ts, geog_area, city, county, best_cfg, confint=2)
 
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_521_2.png)
+![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_580_2.png)
 
 
 
@@ -15318,7 +16611,7 @@ plot_single_geog(df_melt, geog_area, 'value', 'Zip', figsize=(12, 6), fontsize1=
 ```
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_536_0.png)
+![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_595_0.png)
 
 
 
@@ -15329,7 +16622,7 @@ plt.title(geog_area);
 ```
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_537_0.png)
+![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_596_0.png)
 
 
 
@@ -15338,7 +16631,7 @@ plot_acf_pacf(ts.value)
 ```
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_538_0.png)
+![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_597_0.png)
 
 
 
@@ -15349,7 +16642,7 @@ plot_seasonal_decomp(ts.value);
 ```
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_539_0.png)
+![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_598_0.png)
 
 
 ### ARIMA parameters tuning
@@ -15646,7 +16939,7 @@ arima_forecast_enter_pdq(ts, geog_area, city, county, best_cfg, confint=2)
 
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_544_2.png)
+![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_603_2.png)
 
 
 
@@ -16090,7 +17383,7 @@ plot_single_geog(df_melt, geog_area, 'value', 'Zip', figsize=(12, 6), fontsize1=
 ```
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_559_0.png)
+![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_618_0.png)
 
 
 
@@ -16101,7 +17394,7 @@ plt.title(geog_area);
 ```
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_560_0.png)
+![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_619_0.png)
 
 
 
@@ -16110,7 +17403,7 @@ plot_acf_pacf(ts.value)
 ```
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_561_0.png)
+![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_620_0.png)
 
 
 
@@ -16121,7 +17414,7 @@ plot_seasonal_decomp(ts.value);
 ```
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_562_0.png)
+![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_621_0.png)
 
 
 ### ARIMA parameters tuning
@@ -16430,7 +17723,7 @@ arima_forecast_enter_pdq(ts, geog_area, city, county, best_cfg, confint=2)
 
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_567_2.png)
+![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_626_2.png)
 
 
 
@@ -16885,7 +18178,7 @@ plot_single_geog(df_melt, geog_area, 'value', 'Zip', figsize=(12, 6), fontsize1=
 ```
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_582_0.png)
+![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_641_0.png)
 
 
 
@@ -16896,7 +18189,7 @@ plt.title(geog_area);
 ```
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_583_0.png)
+![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_642_0.png)
 
 
 
@@ -16905,7 +18198,7 @@ plot_acf_pacf(ts.value)
 ```
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_584_0.png)
+![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_643_0.png)
 
 
 
@@ -16916,7 +18209,7 @@ plot_seasonal_decomp(ts.value);
 ```
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_585_0.png)
+![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_644_0.png)
 
 
 ### ARIMA parameters tuning
@@ -17235,7 +18528,7 @@ arima_forecast_enter_pdq(ts, geog_area, city, county, best_cfg, confint=2)
 
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_590_2.png)
+![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_649_2.png)
 
 
 
@@ -17704,7 +18997,7 @@ plot_single_geog(df_melt, geog_area, 'value', 'Zip', figsize=(12, 6), fontsize1=
 ```
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_606_0.png)
+![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_665_0.png)
 
 
 
@@ -17715,7 +19008,7 @@ plt.title(geog_area);
 ```
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_607_0.png)
+![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_666_0.png)
 
 
 
@@ -17724,7 +19017,7 @@ plot_acf_pacf(ts.value)
 ```
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_608_0.png)
+![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_667_0.png)
 
 
 
@@ -17735,7 +19028,7 @@ plot_seasonal_decomp(ts.value);
 ```
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_609_0.png)
+![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_668_0.png)
 
 
 ### ARIMA parameters tuning
@@ -18064,7 +19357,7 @@ arima_forecast_enter_pdq(ts, geog_area, city, county, best_cfg, confint=2)
 
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_614_2.png)
+![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_673_2.png)
 
 
 
@@ -19715,7 +21008,7 @@ fig, ax = plot_ts_zips(df_sac, geog_areas, nrows=11, ncols=2, figsize=(18, 50), 
 ```
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_635_0.png)
+![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_694_0.png)
 
 
 ### Visualization of semi-finalist ZIP codes, labeled with ZIP *AND* city
@@ -19855,7 +21148,7 @@ zip_semifinalists(df_sac, dict_semifinal_city_zip, col = 'value', nrows=11, ncol
 ```
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_646_0.png)
+![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_705_0.png)
 
 
 ### Create 6 ZIP plots at one time (PowerPoint-friendlier format)
@@ -19945,7 +21238,7 @@ zip_semifinalists(df_sac, dict_semi_0_6, col = 'value', nrows=3, ncols=2, figsiz
 ```
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_654_0.png)
+![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_713_0.png)
 
 
 
@@ -19954,7 +21247,7 @@ zip_semifinalists(df_sac, dict_semi_6_12, col = 'value', nrows=3, ncols=2, figsi
 ```
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_655_0.png)
+![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_714_0.png)
 
 
 
@@ -19963,7 +21256,7 @@ zip_semifinalists(df_sac, dict_semi_12_18, col = 'value', nrows=3, ncols=2, figs
 ```
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_656_0.png)
+![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_715_0.png)
 
 
 
@@ -19972,7 +21265,7 @@ zip_semifinalists(df_sac, dict_semi_18_20, col = 'value', nrows=3, ncols=2, figs
 ```
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_657_0.png)
+![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_716_0.png)
 
 
 ## Recommended ZIP Codes
