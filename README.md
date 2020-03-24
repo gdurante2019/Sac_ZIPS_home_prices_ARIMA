@@ -3678,9 +3678,7 @@ from sklearn.metrics import mean_squared_error
 
 ```
 
-## Parameter fine-tuning function
-
-### Creating p, d, q, and m values for running ARIMA model
+## Creating p, d, q, and m values for running ARIMA model
 
 
 ```python
@@ -3691,6 +3689,8 @@ q_values = range(0, 3)
 warnings.filterwarnings("ignore")
 
 ```
+
+## Parameter fine-tuning function
 
 
 ```python
@@ -3907,7 +3907,7 @@ def pred_best_worst(pred, low, high, last):
         
 ```
 
-## Function to perform ARIMA modeling and display forecast results
+## Functions to perform ARIMA modeling and display forecast results
 
 
 ```python
@@ -4088,7 +4088,7 @@ def arima_forecast_enter_pdq_no_listappend(ts, geog_area, city, county, best_cfg
 
 ```
 
-## ARIMA forecast function -- on/off switch for parameter fine-tuning (doesn't work currently)
+### ARIMA forecast function -- on/off switch for parameter fine-tuning
 
 
 ```python
@@ -4157,6 +4157,9 @@ def arima_forecast(ts, geog_area, city, county, p_values, d_values, q_values, be
     return geog_areas, cities, counties, orders, predicted_prices, lower_bound_prices, upper_bound_prices, last_values, pred_pct_changes, lower_pct_changes, upper_pct_changes
 
 ```
+
+## Functions to store and show results
+
 
 ### Function to create empty lists for storing results
 
@@ -4426,7 +4429,7 @@ plot_single_geog(df_melt, geog_area, 'value', 'Zip', figsize=(12, 6), fontsize1=
 ```
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_168_0.png)
+![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_169_0.png)
 
 
 
@@ -4437,7 +4440,7 @@ plt.title(geog_area);
 ```
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_169_0.png)
+![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_170_0.png)
 
 
 
@@ -4446,7 +4449,7 @@ plot_acf_pacf(ts.value)
 ```
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_170_0.png)
+![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_171_0.png)
 
 
 
@@ -4457,7 +4460,7 @@ plot_seasonal_decomp(ts.value);
 ```
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_171_0.png)
+![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_172_0.png)
 
 
 ### ARIMA parameters tuning
@@ -4575,7 +4578,7 @@ arima_forecast_enter_pdq(ts, geog_area, city, county, best_cfg, confint=2)
 
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_177_2.png)
+![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_178_2.png)
 
 
 
@@ -4750,7 +4753,7 @@ plot_single_geog(df_melt, geog_area, 'value', 'Zip', figsize=(12, 6), fontsize1=
 ```
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_191_0.png)
+![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_192_0.png)
 
 
 
@@ -4761,7 +4764,7 @@ plt.title(geog_area);
 ```
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_192_0.png)
+![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_193_0.png)
 
 
 
@@ -4770,7 +4773,7 @@ plot_acf_pacf(ts.value)
 ```
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_193_0.png)
+![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_194_0.png)
 
 
 
@@ -4781,7 +4784,7 @@ plot_seasonal_decomp(ts.value);
 ```
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_194_0.png)
+![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_195_0.png)
 
 
 ### ARIMA parameters tuning
@@ -4896,7 +4899,7 @@ arima_forecast_enter_pdq(ts, geog_area, city, county, best_cfg, confint=2)
 
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_199_2.png)
+![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_200_2.png)
 
 
 
@@ -7406,7 +7409,7 @@ plot_single_geog(df_sac, geog_area, 'value', 'Zip', figsize=(12, 6), fontsize1=1
 ```
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_212_0.png)
+![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_213_0.png)
 
 
 
@@ -7417,7 +7420,7 @@ plt.title(geog_area);
 ```
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_213_0.png)
+![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_214_0.png)
 
 
 
@@ -7451,7 +7454,7 @@ plot_acf_pacf(ts_values, figsize=(10,6), lags=15)
 ```
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_216_0.png)
+![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_217_0.png)
 
 
 
@@ -7460,7 +7463,7 @@ plot_seasonal_decomp(ts_values);
 ```
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_217_0.png)
+![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_218_0.png)
 
 
 ### ARIMA parameters tuning
@@ -7586,7 +7589,7 @@ arima_forecast_enter_pdq(ts, geog_area, city, county, best_cfg, confint=2)
 
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_222_2.png)
+![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_223_2.png)
 
 
 
@@ -7854,7 +7857,7 @@ plot_single_geog(df_melt, geog_area, 'value', 'Zip', figsize=(12, 6), fontsize1=
 ```
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_237_0.png)
+![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_238_0.png)
 
 
 
@@ -7865,7 +7868,7 @@ plt.title(geog_area);
 ```
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_238_0.png)
+![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_239_0.png)
 
 
 
@@ -7874,7 +7877,7 @@ plot_acf_pacf(ts.value)
 ```
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_239_0.png)
+![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_240_0.png)
 
 
 
@@ -7885,7 +7888,7 @@ plot_seasonal_decomp(ts.value);
 ```
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_240_0.png)
+![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_241_0.png)
 
 
 ### ARIMA parameters tuning
@@ -8011,7 +8014,7 @@ arima_forecast_enter_pdq(ts, geog_area, city, county, best_cfg, confint=2)
 
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_245_2.png)
+![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_246_2.png)
 
 
 
@@ -8279,7 +8282,7 @@ plot_single_geog(df_melt, geog_area, 'value', 'Zip', figsize=(12, 6), fontsize1=
 ```
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_260_0.png)
+![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_261_0.png)
 
 
 
@@ -8290,7 +8293,7 @@ plt.title(geog_area);
 ```
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_261_0.png)
+![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_262_0.png)
 
 
 
@@ -8299,7 +8302,7 @@ plot_acf_pacf(ts.value)
 ```
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_262_0.png)
+![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_263_0.png)
 
 
 
@@ -8310,7 +8313,7 @@ plot_seasonal_decomp(ts.value);
 ```
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_263_0.png)
+![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_264_0.png)
 
 
 ### ARIMA parameters tuning
@@ -8443,7 +8446,7 @@ arima_forecast_enter_pdq(ts, geog_area, city, county, best_cfg, confint=2)
 
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_268_2.png)
+![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_269_2.png)
 
 
 
@@ -8715,7 +8718,7 @@ plot_single_geog(df_melt, geog_area, 'value', 'Zip', figsize=(12, 6), fontsize1=
 ```
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_283_0.png)
+![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_284_0.png)
 
 
 
@@ -8726,7 +8729,7 @@ plt.title(geog_area);
 ```
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_284_0.png)
+![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_285_0.png)
 
 
 
@@ -8735,7 +8738,7 @@ plot_acf_pacf(ts.value)
 ```
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_285_0.png)
+![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_286_0.png)
 
 
 
@@ -8746,7 +8749,7 @@ plot_seasonal_decomp(ts.value);
 ```
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_286_0.png)
+![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_287_0.png)
 
 
 ### ARIMA parameters tuning
@@ -8868,7 +8871,7 @@ arima_forecast_enter_pdq(ts, geog_area, city, county, best_cfg, confint=2)
 
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_291_2.png)
+![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_292_2.png)
 
 
 
@@ -9119,7 +9122,7 @@ plot_single_geog(df_melt, geog_area, 'value', 'Zip', figsize=(12, 6), fontsize1=
 ```
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_306_0.png)
+![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_307_0.png)
 
 
 
@@ -9130,7 +9133,7 @@ plt.title(geog_area);
 ```
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_307_0.png)
+![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_308_0.png)
 
 
 
@@ -9139,7 +9142,7 @@ plot_acf_pacf(ts.value)
 ```
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_308_0.png)
+![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_309_0.png)
 
 
 
@@ -9150,7 +9153,7 @@ plot_seasonal_decomp(ts.value);
 ```
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_309_0.png)
+![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_310_0.png)
 
 
 ### ARIMA parameters tuning
@@ -9288,7 +9291,7 @@ arima_forecast_enter_pdq(ts, geog_area, city, county, best_cfg, confint=2)
 
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_314_2.png)
+![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_315_2.png)
 
 
 
@@ -9576,7 +9579,7 @@ plot_single_geog(df_melt, geog_area, 'value', 'Zip', figsize=(12, 6), fontsize1=
 ```
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_329_0.png)
+![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_330_0.png)
 
 
 
@@ -9587,7 +9590,7 @@ plt.title(geog_area);
 ```
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_330_0.png)
+![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_331_0.png)
 
 
 
@@ -9596,7 +9599,7 @@ plot_acf_pacf(ts.value)
 ```
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_331_0.png)
+![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_332_0.png)
 
 
 
@@ -9607,7 +9610,7 @@ plot_seasonal_decomp(ts.value);
 ```
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_332_0.png)
+![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_333_0.png)
 
 
 ### ARIMA parameters tuning
@@ -9769,7 +9772,7 @@ arima_forecast_enter_pdq(ts, geog_area, city, county, best_cfg, confint=2)
 
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_337_2.png)
+![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_338_2.png)
 
 
 
@@ -10086,7 +10089,7 @@ plot_single_geog(df_melt, geog_area, 'value', 'Zip', figsize=(12, 6), fontsize1=
 ```
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_352_0.png)
+![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_353_0.png)
 
 
 
@@ -10097,7 +10100,7 @@ plt.title(geog_area);
 ```
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_353_0.png)
+![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_354_0.png)
 
 
 
@@ -10106,7 +10109,7 @@ plot_acf_pacf(ts.value)
 ```
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_354_0.png)
+![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_355_0.png)
 
 
 
@@ -10117,7 +10120,7 @@ plot_seasonal_decomp(ts.value);
 ```
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_355_0.png)
+![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_356_0.png)
 
 
 ### ARIMA parameters tuning
@@ -10296,7 +10299,7 @@ arima_forecast_enter_pdq(ts, geog_area, city, county, best_cfg, confint=2)
 
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_360_2.png)
+![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_361_2.png)
 
 
 
@@ -10629,7 +10632,7 @@ plot_single_geog(df_melt, geog_area, 'value', 'Zip', figsize=(12, 6), fontsize1=
 ```
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_375_0.png)
+![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_376_0.png)
 
 
 
@@ -10640,7 +10643,7 @@ plt.title(geog_area);
 ```
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_376_0.png)
+![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_377_0.png)
 
 
 
@@ -10649,7 +10652,7 @@ plot_acf_pacf(ts.value)
 ```
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_377_0.png)
+![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_378_0.png)
 
 
 
@@ -10660,7 +10663,7 @@ plot_seasonal_decomp(ts.value);
 ```
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_378_0.png)
+![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_379_0.png)
 
 
 ### ARIMA parameters tuning
@@ -10850,7 +10853,7 @@ arima_forecast_enter_pdq(ts, geog_area, city, county, best_cfg, confint=2)
 
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_383_2.png)
+![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_384_2.png)
 
 
 
@@ -11199,7 +11202,7 @@ plot_single_geog(df_melt, geog_area, 'value', 'Zip', figsize=(12, 6), fontsize1=
 ```
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_398_0.png)
+![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_399_0.png)
 
 
 
@@ -11210,7 +11213,7 @@ plt.title(geog_area);
 ```
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_399_0.png)
+![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_400_0.png)
 
 
 
@@ -11219,7 +11222,7 @@ plot_acf_pacf(ts.value)
 ```
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_400_0.png)
+![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_401_0.png)
 
 
 
@@ -11230,7 +11233,7 @@ plot_seasonal_decomp(ts.value);
 ```
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_401_0.png)
+![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_402_0.png)
 
 
 ### ARIMA parameters tuning
@@ -11438,7 +11441,7 @@ arima_forecast_enter_pdq(ts, geog_area, city, county, best_cfg, confint=2)
 
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_406_2.png)
+![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_407_2.png)
 
 
 
@@ -11791,7 +11794,7 @@ plot_single_geog(df_melt, geog_area, 'value', 'Zip', figsize=(12, 6), fontsize1=
 ```
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_420_0.png)
+![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_421_0.png)
 
 
 
@@ -11802,7 +11805,7 @@ plt.title(geog_area);
 ```
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_421_0.png)
+![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_422_0.png)
 
 
 
@@ -11811,7 +11814,7 @@ plot_acf_pacf(ts.value)
 ```
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_422_0.png)
+![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_423_0.png)
 
 
 
@@ -11822,7 +11825,7 @@ plot_seasonal_decomp(ts.value);
 ```
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_423_0.png)
+![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_424_0.png)
 
 
 ### ARIMA parameters tuning
@@ -12065,7 +12068,7 @@ arima_forecast_enter_pdq(ts, geog_area, city, county, best_cfg, confint=2)
 
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_428_2.png)
+![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_429_2.png)
 
 
 
@@ -12454,7 +12457,7 @@ plot_single_geog(df_melt, geog_area, 'value', 'Zip', figsize=(12, 6), fontsize1=
 ```
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_443_0.png)
+![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_444_0.png)
 
 
 
@@ -12465,7 +12468,7 @@ plt.title(geog_area);
 ```
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_444_0.png)
+![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_445_0.png)
 
 
 
@@ -12474,7 +12477,7 @@ plot_acf_pacf(ts.value)
 ```
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_445_0.png)
+![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_446_0.png)
 
 
 
@@ -12485,7 +12488,7 @@ plot_seasonal_decomp(ts.value);
 ```
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_446_0.png)
+![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_447_0.png)
 
 
 ### ARIMA parameters tuning
@@ -12725,7 +12728,7 @@ arima_forecast_enter_pdq(ts, geog_area, city, county, best_cfg, confint=2)
 
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_451_2.png)
+![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_452_2.png)
 
 
 
@@ -13125,7 +13128,7 @@ plot_single_geog(df_melt, geog_area, 'value', 'Zip', figsize=(12, 6), fontsize1=
 ```
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_466_0.png)
+![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_467_0.png)
 
 
 
@@ -13136,7 +13139,7 @@ plt.title(geog_area);
 ```
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_467_0.png)
+![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_468_0.png)
 
 
 
@@ -13145,7 +13148,7 @@ plot_acf_pacf(ts.value)
 ```
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_468_0.png)
+![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_469_0.png)
 
 
 
@@ -13156,7 +13159,7 @@ plot_seasonal_decomp(ts.value);
 ```
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_469_0.png)
+![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_470_0.png)
 
 
 ### ARIMA parameters tuning
@@ -13426,7 +13429,7 @@ arima_forecast_enter_pdq(ts, geog_area, city, county, best_cfg, confint=2)
 
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_474_2.png)
+![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_475_2.png)
 
 
 
@@ -13838,7 +13841,7 @@ plot_single_geog(df_melt, geog_area, 'value', 'Zip', figsize=(12, 6), fontsize1=
 ```
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_489_0.png)
+![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_490_0.png)
 
 
 
@@ -13849,7 +13852,7 @@ plt.title(geog_area);
 ```
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_490_0.png)
+![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_491_0.png)
 
 
 
@@ -13858,7 +13861,7 @@ plot_acf_pacf(ts.value)
 ```
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_491_0.png)
+![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_492_0.png)
 
 
 
@@ -13869,7 +13872,7 @@ plot_seasonal_decomp(ts.value);
 ```
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_492_0.png)
+![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_493_0.png)
 
 
 ### ARIMA parameters tuning
@@ -14130,7 +14133,7 @@ arima_forecast_enter_pdq(ts, geog_area, city, county, best_cfg, confint=2)
 
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_497_2.png)
+![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_498_2.png)
 
 
 
@@ -14553,7 +14556,7 @@ plot_single_geog(df_melt, geog_area, 'value', 'Zip', figsize=(12, 6), fontsize1=
 ```
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_512_0.png)
+![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_513_0.png)
 
 
 
@@ -14564,7 +14567,7 @@ plt.title(geog_area);
 ```
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_513_0.png)
+![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_514_0.png)
 
 
 
@@ -14573,7 +14576,7 @@ plot_acf_pacf(ts.value)
 ```
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_514_0.png)
+![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_515_0.png)
 
 
 
@@ -14584,7 +14587,7 @@ plot_seasonal_decomp(ts.value);
 ```
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_515_0.png)
+![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_516_0.png)
 
 
 ### ARIMA parameters tuning
@@ -14881,7 +14884,7 @@ arima_forecast_enter_pdq(ts, geog_area, city, county, best_cfg, confint=2)
 
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_520_2.png)
+![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_521_2.png)
 
 
 
@@ -15315,7 +15318,7 @@ plot_single_geog(df_melt, geog_area, 'value', 'Zip', figsize=(12, 6), fontsize1=
 ```
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_535_0.png)
+![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_536_0.png)
 
 
 
@@ -15326,7 +15329,7 @@ plt.title(geog_area);
 ```
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_536_0.png)
+![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_537_0.png)
 
 
 
@@ -15335,7 +15338,7 @@ plot_acf_pacf(ts.value)
 ```
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_537_0.png)
+![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_538_0.png)
 
 
 
@@ -15346,7 +15349,7 @@ plot_seasonal_decomp(ts.value);
 ```
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_538_0.png)
+![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_539_0.png)
 
 
 ### ARIMA parameters tuning
@@ -15643,7 +15646,7 @@ arima_forecast_enter_pdq(ts, geog_area, city, county, best_cfg, confint=2)
 
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_543_2.png)
+![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_544_2.png)
 
 
 
@@ -16087,7 +16090,7 @@ plot_single_geog(df_melt, geog_area, 'value', 'Zip', figsize=(12, 6), fontsize1=
 ```
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_558_0.png)
+![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_559_0.png)
 
 
 
@@ -16098,7 +16101,7 @@ plt.title(geog_area);
 ```
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_559_0.png)
+![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_560_0.png)
 
 
 
@@ -16107,7 +16110,7 @@ plot_acf_pacf(ts.value)
 ```
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_560_0.png)
+![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_561_0.png)
 
 
 
@@ -16118,7 +16121,7 @@ plot_seasonal_decomp(ts.value);
 ```
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_561_0.png)
+![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_562_0.png)
 
 
 ### ARIMA parameters tuning
@@ -16427,7 +16430,7 @@ arima_forecast_enter_pdq(ts, geog_area, city, county, best_cfg, confint=2)
 
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_566_2.png)
+![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_567_2.png)
 
 
 
@@ -16882,7 +16885,7 @@ plot_single_geog(df_melt, geog_area, 'value', 'Zip', figsize=(12, 6), fontsize1=
 ```
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_581_0.png)
+![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_582_0.png)
 
 
 
@@ -16893,7 +16896,7 @@ plt.title(geog_area);
 ```
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_582_0.png)
+![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_583_0.png)
 
 
 
@@ -16902,7 +16905,7 @@ plot_acf_pacf(ts.value)
 ```
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_583_0.png)
+![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_584_0.png)
 
 
 
@@ -16913,7 +16916,7 @@ plot_seasonal_decomp(ts.value);
 ```
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_584_0.png)
+![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_585_0.png)
 
 
 ### ARIMA parameters tuning
@@ -17232,7 +17235,7 @@ arima_forecast_enter_pdq(ts, geog_area, city, county, best_cfg, confint=2)
 
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_589_2.png)
+![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_590_2.png)
 
 
 
@@ -17701,7 +17704,7 @@ plot_single_geog(df_melt, geog_area, 'value', 'Zip', figsize=(12, 6), fontsize1=
 ```
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_605_0.png)
+![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_606_0.png)
 
 
 
@@ -17712,7 +17715,7 @@ plt.title(geog_area);
 ```
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_606_0.png)
+![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_607_0.png)
 
 
 
@@ -17721,7 +17724,7 @@ plot_acf_pacf(ts.value)
 ```
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_607_0.png)
+![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_608_0.png)
 
 
 
@@ -17732,7 +17735,7 @@ plot_seasonal_decomp(ts.value);
 ```
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_608_0.png)
+![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_609_0.png)
 
 
 ### ARIMA parameters tuning
@@ -18061,7 +18064,7 @@ arima_forecast_enter_pdq(ts, geog_area, city, county, best_cfg, confint=2)
 
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_613_2.png)
+![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_614_2.png)
 
 
 
@@ -19712,7 +19715,7 @@ fig, ax = plot_ts_zips(df_sac, geog_areas, nrows=11, ncols=2, figsize=(18, 50), 
 ```
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_634_0.png)
+![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_635_0.png)
 
 
 ### Visualization of semi-finalist ZIP codes, labeled with ZIP *AND* city
@@ -19852,7 +19855,7 @@ zip_semifinalists(df_sac, dict_semifinal_city_zip, col = 'value', nrows=11, ncol
 ```
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_645_0.png)
+![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_646_0.png)
 
 
 ### Create 6 ZIP plots at one time (PowerPoint-friendlier format)
@@ -19942,7 +19945,7 @@ zip_semifinalists(df_sac, dict_semi_0_6, col = 'value', nrows=3, ncols=2, figsiz
 ```
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_653_0.png)
+![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_654_0.png)
 
 
 
@@ -19951,7 +19954,7 @@ zip_semifinalists(df_sac, dict_semi_6_12, col = 'value', nrows=3, ncols=2, figsi
 ```
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_654_0.png)
+![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_655_0.png)
 
 
 
@@ -19960,7 +19963,7 @@ zip_semifinalists(df_sac, dict_semi_12_18, col = 'value', nrows=3, ncols=2, figs
 ```
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_655_0.png)
+![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_656_0.png)
 
 
 
@@ -19969,7 +19972,7 @@ zip_semifinalists(df_sac, dict_semi_18_20, col = 'value', nrows=3, ncols=2, figs
 ```
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_656_0.png)
+![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_657_0.png)
 
 
 ## Recommended ZIP Codes
