@@ -25,7 +25,7 @@ Because the investment group is located in Sacramento, and because the Sacrament
 
 ### Visualization of values by city and/or ZIP code, as well as of predictions of model
 
-I developed iterative functions to visualize values by city within a metro area and across zip codes within cities in a metro area, using lists and dictionaries to iterate through the geographic areas of interest.  Using this approach, I identified 19 ZIP codes in the Sacramento region of possible interest.  Time series analysis of these 19 ZIP codes suggested 11 finalist ZIP codes to explore further.  From those, I selected 5 that I thought provided good (potentially great) returns, while limiting downside risk.  
+I developed iterative functions to visualize values by city within a metro area and across zip codes within cities in a metro area, using lists and dictionaries to iterate through the geographic areas of interest.  Using this approach, I identified 19 ZIP codes in the Sacramento region of possible interest.  Time series analysis of these 20 ZIP codes revealed 5 with predicted returns around 10% or above, with relatively limited downside, and potentially strong upside.    
 
 ### Consideration of predicted values, worst- and best-case scenarios, and other factors in the selection process
 
@@ -34,7 +34,7 @@ While the predicted returns over the forecast time horizon were of primary conce
 
 ### County representation in finalist and top 5 selected ZIP codes
 
-One of those ZIP codes was in El Dorado County, and the other four were in Placer County.  While there may be promising ZIP codes in both Sacramento and Yolo Counties, Sacramento City ZIP codes that I analyzed were not as competitive as those of Placer County.  I only analyzed one ZIP code in Yolo County (95616 in Davis), though others looked similar in terms of their pattern and trends.  It would probably be worthwhile to analyze one of the two ZIP codes in West Sacramento, as West Sac is an area that has been on the upswing for several years.  
+Three of those ZIP codes was in El Dorado County, and the other two were in Placer County.  While there may be promising ZIP codes in both Sacramento and Yolo Counties, Sacramento City ZIP codes that I analyzed were not as competitive as those of Placer County.  I only analyzed one ZIP code in Yolo County (95616 in Davis), though others looked similar in terms of their pattern and trends.  It would probably be worthwhile to analyze one of the two ZIP codes in West Sacramento, as West Sac is an area that has been on the upswing for several years.  
 
 
 ## Possible future directions
@@ -3363,6 +3363,38 @@ dict_54_56
 ```python
 # Be sure to use df with appropriate value grouping (e.g., metro, city, zip)
 
+def plot_single_geog(df, geog_area, col1, col2, figsize=(12, 6), fontsize1=14, fontsize2=18):
+    
+    ''' Plots housing values for individual geographic unit, e.g., MetroState, City, County.  
+    Be sure to use the appropriate dataframe for the selected grouping (df_metro_cities for 
+    cities in a metro area, for example).  Specify nrows, ncols, and figsize to match size of list.
+    '''
+    
+    ts = df[col1].loc[df[col2] == geog_area]
+    ax = ts.plot(figsize=figsize, fontsize=fontsize1, label = 'Raw Price')
+    plt.title(geog_area, fontsize=fontsize2)
+    plt.xlabel('')
+
+    max_ = ts.loc['2004':'2010'].idxmax()  
+    crash = '01-2009'
+    min_ = ts.loc[crash:].idxmin()
+    val_2003 = ts.loc['2003-01-01']
+
+    ax.axvline(max_, label='Max price during bubble', color = 'green', ls=':')
+    ax.axvline(crash, label = 'Housing Index Drops', color='red', ls=':')
+    ax.axvline(min_, label=f'Min price post-crash {min_}', color = 'black', ls=':')
+    ax.axhline(val_2003, label='Value on 2003-01-01', color = 'blue', ls='-.', alpha=0.15)
+    ax.tick_params(axis='both', labelsize=fontsize1)
+
+    ax.legend(loc='upper left', fontsize=fontsize1)
+
+
+```
+
+
+```python
+# Be sure to use df with appropriate value grouping (e.g., metro, city, zip)
+
 def plot_single_geog(df, geog_area, col1, col2, figsize=(12, 6), fontsize1=12, fontsize2=16):
     
     ''' Plots housing values for individual geographic unit, e.g., MetroState, City, County.  
@@ -3671,6 +3703,127 @@ def metro_cities_zips_boxplot(df, dict_metro_cities_zips, nrows, ncols, figsize=
 
 ```
 
+
+```python
+data = df_sac.loc[df_sac['City'] == 'Sacramento']
+data.head()
+```
+
+
+
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Metro</th>
+      <th>MetroState</th>
+      <th>CountyName</th>
+      <th>City</th>
+      <th>Zip</th>
+      <th>value</th>
+    </tr>
+    <tr>
+      <th>time</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>1996-04-01</td>
+      <td>Sacramento</td>
+      <td>Sacramento CA</td>
+      <td>Sacramento</td>
+      <td>Sacramento</td>
+      <td>95660</td>
+      <td>73200.0</td>
+    </tr>
+    <tr>
+      <td>1996-05-01</td>
+      <td>Sacramento</td>
+      <td>Sacramento CA</td>
+      <td>Sacramento</td>
+      <td>Sacramento</td>
+      <td>95660</td>
+      <td>72500.0</td>
+    </tr>
+    <tr>
+      <td>1996-06-01</td>
+      <td>Sacramento</td>
+      <td>Sacramento CA</td>
+      <td>Sacramento</td>
+      <td>Sacramento</td>
+      <td>95660</td>
+      <td>71900.0</td>
+    </tr>
+    <tr>
+      <td>1996-07-01</td>
+      <td>Sacramento</td>
+      <td>Sacramento CA</td>
+      <td>Sacramento</td>
+      <td>Sacramento</td>
+      <td>95660</td>
+      <td>71300.0</td>
+    </tr>
+    <tr>
+      <td>1996-08-01</td>
+      <td>Sacramento</td>
+      <td>Sacramento CA</td>
+      <td>Sacramento</td>
+      <td>Sacramento</td>
+      <td>95660</td>
+      <td>70700.0</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+
+### Violin plot function
+
+
+```python
+# got figure size  modification example from 
+# https://exceptionshub.com/how-do-i-change-the-figure-size-for-a-seaborn-plot.html
+# fig, ax = plt.subplots()
+# fig.set_size_inches(16, 6)
+# sns.violinplot(x="Zip", y="value", data=df_44, scale="count", inner="stick", ax=ax)
+
+# import seaborn as sns
+
+def violin_plt(x, y, data, scale="width", inner="quartile", set_size_inches=(16, 6)):
+    
+    '''Plots zip codes within a city on one violin plot.  Set defaults to x='Zip', y='value', 
+    scale="width", inner="quartile", set_size_inches=(16, 6), ax=ax)
+    '''
+    import seaborn as sns
+    
+    fig, ax = plt.subplots()
+    fig.set_size_inches(set_size_inches)
+    sns.violinplot(x, y, data, scale, inner, ax)
+
+```
+
 ### Creating ACF and PACF plots
 
 
@@ -3745,7 +3898,7 @@ plot_ts_cities(df_sac_cities, sac_metro_cities, col='value', figsize=(18, 150));
 ```
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_122_0.png)
+![png](Mod4_proj_Durante_032720_files/Mod4_proj_Durante_032720_126_0.png)
 
 
 
@@ -3754,7 +3907,7 @@ plot_ts_cities(df_sac_cities, sac_metro_cities[:6], nrows = 3, ncols = 2, figsiz
 ```
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_123_0.png)
+![png](Mod4_proj_Durante_032720_files/Mod4_proj_Durante_032720_127_0.png)
 
 
 
@@ -3763,7 +3916,7 @@ plot_ts_cities(df_sac_cities, sac_metro_cities[6:12], nrows = 3, ncols = 2, figs
 ```
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_124_0.png)
+![png](Mod4_proj_Durante_032720_files/Mod4_proj_Durante_032720_128_0.png)
 
 
 
@@ -3773,7 +3926,7 @@ plot_ts_cities(df_sac_cities, sac_metro_cities[12:18], nrows = 3, ncols = 2, fig
 ```
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_125_0.png)
+![png](Mod4_proj_Durante_032720_files/Mod4_proj_Durante_032720_129_0.png)
 
 
 
@@ -3790,7 +3943,7 @@ plot_ts_cities(df_sac_cities, sac_metro_cities[18:24], nrows = 3, ncols = 2, fig
 
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_126_1.png)
+![png](Mod4_proj_Durante_032720_files/Mod4_proj_Durante_032720_130_1.png)
 
 
 
@@ -3807,7 +3960,7 @@ plot_ts_cities(df_sac_cities, sac_metro_cities[24:30], nrows = 3, ncols = 2, fig
 
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_127_1.png)
+![png](Mod4_proj_Durante_032720_files/Mod4_proj_Durante_032720_131_1.png)
 
 
 
@@ -3824,7 +3977,7 @@ plot_ts_cities(df_sac_cities, sac_metro_cities[30:36], nrows = 3, ncols = 2, fig
 
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_128_1.png)
+![png](Mod4_proj_Durante_032720_files/Mod4_proj_Durante_032720_132_1.png)
 
 
 
@@ -3841,7 +3994,7 @@ plot_ts_cities(df_sac_cities, sac_metro_cities[36:42], nrows = 3, ncols = 2, fig
 
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_129_1.png)
+![png](Mod4_proj_Durante_032720_files/Mod4_proj_Durante_032720_133_1.png)
 
 
 
@@ -3858,7 +4011,7 @@ plot_ts_cities(df_sac_cities, sac_metro_cities[42:48], nrows = 3, ncols = 2, fig
 
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_130_1.png)
+![png](Mod4_proj_Durante_032720_files/Mod4_proj_Durante_032720_134_1.png)
 
 
 
@@ -3875,7 +4028,7 @@ plot_ts_cities(df_sac_cities, sac_metro_cities[48:54], nrows = 3, ncols = 2, fig
 
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_131_1.png)
+![png](Mod4_proj_Durante_032720_files/Mod4_proj_Durante_032720_135_1.png)
 
 
 
@@ -3892,7 +4045,7 @@ plot_ts_cities(df_sac_cities, sac_metro_cities[54:56], nrows = 3, ncols = 2, fig
 
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_132_1.png)
+![png](Mod4_proj_Durante_032720_files/Mod4_proj_Durante_032720_136_1.png)
 
 
 ### Plots of zip codes within City of Sacramento
@@ -4065,7 +4218,7 @@ fig, ax = plot_ts_zips(df_sac, sacto_zips, nrows=11, ncols=2, figsize=(18, 50), 
 ```
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_138_0.png)
+![png](Mod4_proj_Durante_032720_files/Mod4_proj_Durante_032720_142_0.png)
 
 
 ### Plotting cities and zip codes within Sacramento Metro area 
@@ -4077,97 +4230,99 @@ fig, ax = plot_ts_zips_by_city(df_sac, dict_sac_zips_cities, figsize=(18, 120), 
 ```
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_140_0.png)
+![png](Mod4_proj_Durante_032720_files/Mod4_proj_Durante_032720_144_0.png)
+
+
+### Plotting cities 6 at a time (for use in presentation)
+
+
+```python
+fig, ax = plot_ts_zips_by_city(df_sac, dict_0_6, figsize=(18, 16), nrows=3, ncols=2, legend=True);
+```
+
+
+![png](Mod4_proj_Durante_032720_files/Mod4_proj_Durante_032720_146_0.png)
 
 
 
 ```python
-fig, ax = plot_ts_zips_by_city(df_sac, dict_0_6, figsize=(18, 14), nrows=3, ncols=2, legend=True);
+fig, ax = plot_ts_zips_by_city(df_sac, dict_6_12, figsize=(18, 16), nrows=3, ncols=2, legend=True);
 ```
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_141_0.png)
+![png](Mod4_proj_Durante_032720_files/Mod4_proj_Durante_032720_147_0.png)
 
 
 
 ```python
-fig, ax = plot_ts_zips_by_city(df_sac, dict_6_12, figsize=(18, 14), nrows=3, ncols=2, legend=True);
+fig, ax = plot_ts_zips_by_city(df_sac, dict_12_18, figsize=(18, 16), nrows=3, ncols=2, legend=True);
 ```
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_142_0.png)
+![png](Mod4_proj_Durante_032720_files/Mod4_proj_Durante_032720_148_0.png)
 
 
 
 ```python
-fig, ax = plot_ts_zips_by_city(df_sac, dict_12_18, figsize=(18, 14), nrows=3, ncols=2, legend=True);
+fig, ax = plot_ts_zips_by_city(df_sac, dict_18_24, figsize=(18, 16), nrows=3, ncols=2, legend=True);
 ```
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_143_0.png)
+![png](Mod4_proj_Durante_032720_files/Mod4_proj_Durante_032720_149_0.png)
 
 
 
 ```python
-fig, ax = plot_ts_zips_by_city(df_sac, dict_18_24, figsize=(18, 14), nrows=3, ncols=2, legend=True);
+fig, ax = plot_ts_zips_by_city(df_sac, dict_24_30, figsize=(18, 16), nrows=3, ncols=2, legend=True);
 ```
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_144_0.png)
+![png](Mod4_proj_Durante_032720_files/Mod4_proj_Durante_032720_150_0.png)
 
 
 
 ```python
-fig, ax = plot_ts_zips_by_city(df_sac, dict_24_30, figsize=(18, 14), nrows=3, ncols=2, legend=True);
+fig, ax = plot_ts_zips_by_city(df_sac, dict_30_36, figsize=(18, 16), nrows=3, ncols=2, legend=True);
 ```
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_145_0.png)
+![png](Mod4_proj_Durante_032720_files/Mod4_proj_Durante_032720_151_0.png)
 
 
 
 ```python
-fig, ax = plot_ts_zips_by_city(df_sac, dict_30_36, figsize=(18, 14), nrows=3, ncols=2, legend=True);
+fig, ax = plot_ts_zips_by_city(df_sac, dict_36_42, figsize=(18, 16), nrows=3, ncols=2, legend=True);
 ```
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_146_0.png)
+![png](Mod4_proj_Durante_032720_files/Mod4_proj_Durante_032720_152_0.png)
 
 
 
 ```python
-fig, ax = plot_ts_zips_by_city(df_sac, dict_36_42, figsize=(18, 14), nrows=3, ncols=2, legend=True);
+fig, ax = plot_ts_zips_by_city(df_sac, dict_42_48, figsize=(18, 16), nrows=3, ncols=2, legend=False);
 ```
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_147_0.png)
+![png](Mod4_proj_Durante_032720_files/Mod4_proj_Durante_032720_153_0.png)
 
 
 
 ```python
-fig, ax = plot_ts_zips_by_city(df_sac, dict_42_48, figsize=(16, 13), nrows=3, ncols=2, legend=False);
+fig, ax = plot_ts_zips_by_city(df_sac, dict_48_54, figsize=(18, 16), nrows=3, ncols=2, legend=True);
 ```
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_148_0.png)
+![png](Mod4_proj_Durante_032720_files/Mod4_proj_Durante_032720_154_0.png)
 
 
 
 ```python
-fig, ax = plot_ts_zips_by_city(df_sac, dict_48_54, figsize=(16, 13), nrows=3, ncols=2, legend=True);
+fig, ax = plot_ts_zips_by_city(df_sac, dict_54_56, figsize=(18, 16), nrows=3, ncols=2, legend=True);
 ```
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_149_0.png)
-
-
-
-```python
-fig, ax = plot_ts_zips_by_city(df_sac, dict_54_56, figsize=(16, 13), nrows=3, ncols=2, legend=True);
-```
-
-
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_150_0.png)
+![png](Mod4_proj_Durante_032720_files/Mod4_proj_Durante_032720_155_0.png)
 
 
 ### Plotting boxplots for each city in Sacto Metro region
@@ -4179,7 +4334,7 @@ metro_cities_boxplot(df_sac, sac_metro_cities, nrows=10, ncols=6, figsize=(18, 4
 ```
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_152_0.png)
+![png](Mod4_proj_Durante_032720_files/Mod4_proj_Durante_032720_157_0.png)
 
 
 ### Plotting boxplots for each zip in Sacramento metro region
@@ -4191,7 +4346,7 @@ metro_zips_boxplot(df_sac, sac_metro_zips, nrows = 12, ncols=8, figsize=(18, 60)
 ```
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_154_0.png)
+![png](Mod4_proj_Durante_032720_files/Mod4_proj_Durante_032720_159_0.png)
 
 
 
@@ -4201,7 +4356,7 @@ metro_cities_zips_boxplot(df_sac, dict_sac_zips_cities, nrows=14, ncols=6, figsi
 ```
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_155_0.png)
+![png](Mod4_proj_Durante_032720_files/Mod4_proj_Durante_032720_160_0.png)
 
 
 
@@ -4329,7 +4484,7 @@ df_sac_city.boxplot(by='Zip', column = 'value', figsize=(16, 6))
 
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_158_1.png)
+![png](Mod4_proj_Durante_032720_files/Mod4_proj_Durante_032720_163_1.png)
 
 
 ### Violin plot for Sacramento city zip codes
@@ -4342,25 +4497,21 @@ import seaborn as sns
 
 
 ```python
-# got figure size  modification example from https://exceptionshub.com/how-do-i-change-the-figure-size-for-a-seaborn-plot.html
-
-# fig, ax = plt.subplots()
-# fig.set_size_inches(16, 6)
-# sns.violinplot(x="Zip", y="value", data=df_44, scale="count", inner="stick", ax=ax)
-
-def violin_plt(x, y, data, scale="width", inner="quartile", set_size_inches=(16, 6)):
-    
-    '''Plots zip codes within a city on one violin plot.  Set defaults to x='Zip', y='value', 
-    data=df_sac_city, scale="width", inner="quartile", set_size_inches=(16, 6), ax=ax)
-    '''
-    
-    import seaborn as sns
-    fig, ax = plt.subplots()
-    fig.set_size_inches
-    sns.violinplot(x, y, data, scale, inner, ax)
-    
-    
+fig = plt.figure()
+fig.set_size_inches(16, 6)
+sns.violinplot(x='Zip', y='value', data=data, scale="width", inner="quartile", set_size_inches=(16,6))
 ```
+
+
+
+
+    <matplotlib.axes._subplots.AxesSubplot at 0x1c78dc3198>
+
+
+
+
+![png](Mod4_proj_Durante_032720_files/Mod4_proj_Durante_032720_166_1.png)
+
 
 
 ```python
@@ -4374,18 +4525,87 @@ import seaborn as sns
 
 fig, ax = plt.subplots()
 fig.set_size_inches(16, 6)
-sns.violinplot(x="Zip", y="value", data=df_sac_city, scale="width", inner="quartile", ax=ax)
+sns.violinplot(x="Zip", y="value", data=df_sac_city, scale="width", inner="quartile", ax=ax);
 ```
 
 
-
-
-    <matplotlib.axes._subplots.AxesSubplot at 0x1c6b9af908>
-
+![png](Mod4_proj_Durante_032720_files/Mod4_proj_Durante_032720_167_0.png)
 
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_162_1.png)
+```python
+# got figure size  modification example from https://exceptionshub.com/how-do-i-change-the-figure-size-for-a-seaborn-plot.html
+
+# fig, ax = plt.subplots()
+# fig.set_size_inches(16, 6)
+# sns.violinplot(x="Zip", y="value", data=df_44, scale="count", inner="stick", ax=ax)
+
+def violin_plt(x='Zip', y='value', data=data, scale="width", inner="quartile", set_size_inches=(16, 6), ax=ax):
+    
+    '''Plots zip codes within a city on one violin plot.  Set defaults to x='Zip', y='value', 
+    data=df_sac_city, scale="width", inner="quartile", set_size_inches=(16, 6), ax=ax)
+    '''
+    
+#     import seaborn as sns
+    
+    fig, ax = plt.subplots()
+    fig.set_size_inches(set_size_inches)
+    sns.violinplot(x, y, data, scale, inner, ax)
+    
+    
+```
+
+
+```python
+violin_plt(x='Zip', y='value', data=data, scale="width", inner="quartile")
+```
+
+
+    ---------------------------------------------------------------------------
+
+    AttributeError                            Traceback (most recent call last)
+
+    <ipython-input-1494-3320690a8e1c> in <module>
+    ----> 1 violin_plt(x='Zip', y='value', data=data, scale="width", inner="quartile")
+    
+
+    <ipython-input-1493-4b50be89040b> in violin_plt(x, y, data, scale, inner)
+          8     fig = plt.figure()
+          9     fig.set_size_inches(16, 6)
+    ---> 10     sns.violinplot(x, y, data, scale, inner)
+         11 
+         12 
+
+
+    /opt/anaconda3/envs/learn-env/lib/python3.6/site-packages/seaborn/categorical.py in violinplot(x, y, hue, data, order, hue_order, bw, cut, scale, scale_hue, gridsize, width, inner, split, dodge, orient, linewidth, color, palette, saturation, ax, **kwargs)
+       2385                              bw, cut, scale, scale_hue, gridsize,
+       2386                              width, inner, split, dodge, orient, linewidth,
+    -> 2387                              color, palette, saturation)
+       2388 
+       2389     if ax is None:
+
+
+    /opt/anaconda3/envs/learn-env/lib/python3.6/site-packages/seaborn/categorical.py in __init__(self, x, y, hue, data, order, hue_order, bw, cut, scale, scale_hue, gridsize, width, inner, split, dodge, orient, linewidth, color, palette, saturation)
+        560                  color, palette, saturation):
+        561 
+    --> 562         self.establish_variables(x, y, hue, data, orient, order, hue_order)
+        563         self.establish_colors(color, palette, saturation)
+        564         self.estimate_densities(bw, cut, scale, scale_hue, gridsize)
+
+
+    /opt/anaconda3/envs/learn-env/lib/python3.6/site-packages/seaborn/categorical.py in establish_variables(self, x, y, hue, data, orient, order, hue_order, units)
+        144             # See if we need to get variables from `data`
+        145             if data is not None:
+    --> 146                 x = data.get(x, x)
+        147                 y = data.get(y, y)
+        148                 hue = data.get(hue, hue)
+
+
+    AttributeError: 'str' object has no attribute 'get'
+
+
+
+    <Figure size 1152x432 with 0 Axes>
 
 
 
@@ -4499,7 +4719,7 @@ sns.violinplot(x="Zip", y="value", data=df_sac_city_1996_1999, scale="width", in
 
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_164_1.png)
+![png](Mod4_proj_Durante_032720_files/Mod4_proj_Durante_032720_171_1.png)
 
 
 
@@ -4613,7 +4833,7 @@ sns.violinplot(x="Zip", y="value", data=df_sac_city_2000_2003, scale="width", in
 
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_166_1.png)
+![png](Mod4_proj_Durante_032720_files/Mod4_proj_Durante_032720_173_1.png)
 
 
 
@@ -4727,7 +4947,7 @@ sns.violinplot(x="Zip", y="value", data=df_sac_city_2004_2006, scale="width", in
 
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_168_1.png)
+![png](Mod4_proj_Durante_032720_files/Mod4_proj_Durante_032720_175_1.png)
 
 
 
@@ -4841,7 +5061,7 @@ sns.violinplot(x="Zip", y="value", data=df_sac_city_2007_2012, scale="width", in
 
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_170_1.png)
+![png](Mod4_proj_Durante_032720_files/Mod4_proj_Durante_032720_177_1.png)
 
 
 
@@ -4955,7 +5175,7 @@ sns.violinplot(x="Zip", y="value", data=df_sac_city_2013_2018, scale="width", in
 
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_172_1.png)
+![png](Mod4_proj_Durante_032720_files/Mod4_proj_Durante_032720_179_1.png)
 
 
 # Step 4:  Parameter tuning
@@ -5156,14 +5376,17 @@ def concat_values_forecast(ts, df_forecast):
 
 
 ```python
-def plot_forecast(df_new, geog_area, figsize=(12,8)):
+def plot_forecast(df_new, geog_area, figsize=(12,8), fontsize1=14, fontsize2=18):
     fig = plt.figure(figsize=figsize)
     plt.plot(df_new['value'], label='Raw Data')
     plt.plot(df_new['forecast'], label='Forecast')
     plt.fill_between(df_new.index, df_new['forecast_lower'], df_new['forecast_upper'], color='k', alpha = 0.2, 
                  label='Confidence Interval')
-    plt.legend(loc = 'upper left')
-    plt.title(f'Forecast for {geog_area}')
+    plt.legend(loc = 'upper left', fontsize=fontsize1)
+#     plt.xlabel(xlabel='year', fontsize=fontsize1)
+#     plt.ylabel(ylabel='value', fontsize=fontsize1)
+    plt.tick_params(axis='both', labelsize=fontsize1)
+    plt.title(f'Forecast for {geog_area}', fontsize=fontsize2)
 
 ```
 
@@ -5265,7 +5488,7 @@ def arima_forecast_run(ts, geog_area, city, county, p_values, d_values, q_values
 
 ```
 
-### ARIMA forecast function -- don't run parameter optimization
+### ARIMA modeling and forecast function -- don't run parameter optimization
 
 
 ```python
@@ -5321,7 +5544,7 @@ def arima_forecast_enter_pdq(ts, geog_area, city, county, best_cfg, confint=2): 
 
 ```
 
-### ARIMA forecast function -- don't append lists, don't run parameter optimization
+### ARIMA modeling and forecast function -- don't append lists, don't run parameter optimization
 
 
 ```python
@@ -5381,7 +5604,7 @@ def arima_forecast_enter_pdq_no_listappend(ts, geog_area, city, county, best_cfg
 
 ```
 
-### ARIMA forecast function -- on/off switch for parameter fine-tuning
+### ARIMA modeling and forecast function -- on/off switch for parameter fine-tuning
 
 
 ```python
@@ -5722,7 +5945,7 @@ plot_single_geog(df_melt, geog_area, 'value', 'Zip', figsize=(12, 6), fontsize1=
 ```
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_228_0.png)
+![png](Mod4_proj_Durante_032720_files/Mod4_proj_Durante_032720_235_0.png)
 
 
 
@@ -5733,7 +5956,7 @@ plt.title(geog_area);
 ```
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_229_0.png)
+![png](Mod4_proj_Durante_032720_files/Mod4_proj_Durante_032720_236_0.png)
 
 
 
@@ -5742,7 +5965,7 @@ plot_acf_pacf(ts.value)
 ```
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_230_0.png)
+![png](Mod4_proj_Durante_032720_files/Mod4_proj_Durante_032720_237_0.png)
 
 
 
@@ -5753,7 +5976,7 @@ plot_seasonal_decomp(ts.value);
 ```
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_231_0.png)
+![png](Mod4_proj_Durante_032720_files/Mod4_proj_Durante_032720_238_0.png)
 
 
 ### ARIMA parameters tuning
@@ -5828,7 +6051,7 @@ arima_forecast_enter_pdq(ts, geog_area, city, county, best_cfg, confint=2)
     Model:                 ARIMA(2, 1, 2)   Log Likelihood               -2235.766
     Method:                       css-mle   S.D. of innovations           1139.451
     Date:                Tue, 24 Mar 2020   AIC                           4483.533
-    Time:                        13:32:33   BIC                           4504.989
+    Time:                        19:18:04   BIC                           4504.989
     Sample:                    05-01-1996   HQIC                          4492.155
                              - 04-01-2018                                         
     =================================================================================
@@ -5871,7 +6094,7 @@ arima_forecast_enter_pdq(ts, geog_area, city, county, best_cfg, confint=2)
 
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_237_2.png)
+![png](Mod4_proj_Durante_032720_files/Mod4_proj_Durante_032720_244_2.png)
 
 
 
@@ -6046,7 +6269,7 @@ plot_single_geog(df_melt, geog_area, 'value', 'Zip', figsize=(12, 6), fontsize1=
 ```
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_251_0.png)
+![png](Mod4_proj_Durante_032720_files/Mod4_proj_Durante_032720_258_0.png)
 
 
 
@@ -6057,7 +6280,7 @@ plt.title(geog_area);
 ```
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_252_0.png)
+![png](Mod4_proj_Durante_032720_files/Mod4_proj_Durante_032720_259_0.png)
 
 
 
@@ -6066,7 +6289,7 @@ plot_acf_pacf(ts.value)
 ```
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_253_0.png)
+![png](Mod4_proj_Durante_032720_files/Mod4_proj_Durante_032720_260_0.png)
 
 
 
@@ -6077,7 +6300,7 @@ plot_seasonal_decomp(ts.value);
 ```
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_254_0.png)
+![png](Mod4_proj_Durante_032720_files/Mod4_proj_Durante_032720_261_0.png)
 
 
 ### ARIMA parameters tuning
@@ -6149,7 +6372,7 @@ arima_forecast_enter_pdq(ts, geog_area, city, county, best_cfg, confint=2)
     Model:                 ARIMA(2, 1, 2)   Log Likelihood               -2074.470
     Method:                       css-mle   S.D. of innovations            619.869
     Date:                Tue, 24 Mar 2020   AIC                           4160.940
-    Time:                        13:32:44   BIC                           4182.396
+    Time:                        19:18:21   BIC                           4182.396
     Sample:                    05-01-1996   HQIC                          4169.562
                              - 04-01-2018                                         
     =================================================================================
@@ -6192,7 +6415,7 @@ arima_forecast_enter_pdq(ts, geog_area, city, county, best_cfg, confint=2)
 
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_259_2.png)
+![png](Mod4_proj_Durante_032720_files/Mod4_proj_Durante_032720_266_2.png)
 
 
 
@@ -8702,7 +8925,7 @@ plot_single_geog(df_sac, geog_area, 'value', 'Zip', figsize=(12, 6), fontsize1=1
 ```
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_272_0.png)
+![png](Mod4_proj_Durante_032720_files/Mod4_proj_Durante_032720_279_0.png)
 
 
 
@@ -8713,7 +8936,7 @@ plt.title(geog_area);
 ```
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_273_0.png)
+![png](Mod4_proj_Durante_032720_files/Mod4_proj_Durante_032720_280_0.png)
 
 
 
@@ -8747,7 +8970,7 @@ plot_acf_pacf(ts_values, figsize=(10,6), lags=15)
 ```
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_276_0.png)
+![png](Mod4_proj_Durante_032720_files/Mod4_proj_Durante_032720_283_0.png)
 
 
 
@@ -8756,7 +8979,7 @@ plot_seasonal_decomp(ts_values);
 ```
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_277_0.png)
+![png](Mod4_proj_Durante_032720_files/Mod4_proj_Durante_032720_284_0.png)
 
 
 ### ARIMA parameters tuning
@@ -8827,7 +9050,7 @@ arima_forecast_enter_pdq(ts, geog_area, city, county, best_cfg, confint=2)
     Model:                     ARMA(8, 2)   Log Likelihood               -2246.409
     Method:                       css-mle   S.D. of innovations           1094.652
     Date:                Tue, 24 Mar 2020   AIC                           4516.817
-    Time:                        13:33:26   BIC                           4559.774
+    Time:                        19:18:39   BIC                           4559.774
     Sample:                    04-01-1996   HQIC                          4534.076
                              - 04-01-2018                                         
     ===============================================================================
@@ -8882,7 +9105,7 @@ arima_forecast_enter_pdq(ts, geog_area, city, county, best_cfg, confint=2)
 
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_282_2.png)
+![png](Mod4_proj_Durante_032720_files/Mod4_proj_Durante_032720_289_2.png)
 
 
 
@@ -9150,7 +9373,7 @@ plot_single_geog(df_melt, geog_area, 'value', 'Zip', figsize=(12, 6), fontsize1=
 ```
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_297_0.png)
+![png](Mod4_proj_Durante_032720_files/Mod4_proj_Durante_032720_304_0.png)
 
 
 
@@ -9161,7 +9384,7 @@ plt.title(geog_area);
 ```
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_298_0.png)
+![png](Mod4_proj_Durante_032720_files/Mod4_proj_Durante_032720_305_0.png)
 
 
 
@@ -9170,7 +9393,7 @@ plot_acf_pacf(ts.value)
 ```
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_299_0.png)
+![png](Mod4_proj_Durante_032720_files/Mod4_proj_Durante_032720_306_0.png)
 
 
 
@@ -9181,7 +9404,7 @@ plot_seasonal_decomp(ts.value);
 ```
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_300_0.png)
+![png](Mod4_proj_Durante_032720_files/Mod4_proj_Durante_032720_307_0.png)
 
 
 ### ARIMA parameters tuning
@@ -9260,7 +9483,7 @@ arima_forecast_enter_pdq(ts, geog_area, city, county, best_cfg, confint=2)
     Model:                     ARMA(4, 2)   Log Likelihood               -2117.342
     Method:                       css-mle   S.D. of innovations            694.322
     Date:                Tue, 24 Mar 2020   AIC                           4250.683
-    Time:                        13:33:45   BIC                           4279.321
+    Time:                        19:18:52   BIC                           4279.321
     Sample:                    04-01-1996   HQIC                          4262.190
                              - 04-01-2018                                         
     ===============================================================================
@@ -9307,7 +9530,7 @@ arima_forecast_enter_pdq(ts, geog_area, city, county, best_cfg, confint=2)
 
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_305_2.png)
+![png](Mod4_proj_Durante_032720_files/Mod4_proj_Durante_032720_312_2.png)
 
 
 
@@ -9575,7 +9798,7 @@ plot_single_geog(df_melt, geog_area, 'value', 'Zip', figsize=(12, 6), fontsize1=
 ```
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_320_0.png)
+![png](Mod4_proj_Durante_032720_files/Mod4_proj_Durante_032720_327_0.png)
 
 
 
@@ -9586,7 +9809,7 @@ plt.title(geog_area);
 ```
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_321_0.png)
+![png](Mod4_proj_Durante_032720_files/Mod4_proj_Durante_032720_328_0.png)
 
 
 
@@ -9595,7 +9818,7 @@ plot_acf_pacf(ts.value)
 ```
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_322_0.png)
+![png](Mod4_proj_Durante_032720_files/Mod4_proj_Durante_032720_329_0.png)
 
 
 
@@ -9606,7 +9829,7 @@ plot_seasonal_decomp(ts.value);
 ```
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_323_0.png)
+![png](Mod4_proj_Durante_032720_files/Mod4_proj_Durante_032720_330_0.png)
 
 
 ### ARIMA parameters tuning
@@ -9680,7 +9903,7 @@ arima_forecast_enter_pdq(ts, geog_area, city, county, best_cfg, confint=2)
     Model:                ARIMA(10, 1, 0)   Log Likelihood               -2251.853
     Method:                       css-mle   S.D. of innovations           1214.967
     Date:                Tue, 24 Mar 2020   AIC                           4527.706
-    Time:                        13:33:57   BIC                           4570.618
+    Time:                        19:19:06   BIC                           4570.618
     Sample:                    05-01-1996   HQIC                          4544.949
                              - 04-01-2018                                         
     ==================================================================================
@@ -9739,7 +9962,7 @@ arima_forecast_enter_pdq(ts, geog_area, city, county, best_cfg, confint=2)
 
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_328_2.png)
+![png](Mod4_proj_Durante_032720_files/Mod4_proj_Durante_032720_335_2.png)
 
 
 
@@ -10011,7 +10234,7 @@ plot_single_geog(df_melt, geog_area, 'value', 'Zip', figsize=(12, 6), fontsize1=
 ```
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_343_0.png)
+![png](Mod4_proj_Durante_032720_files/Mod4_proj_Durante_032720_350_0.png)
 
 
 
@@ -10022,7 +10245,7 @@ plt.title(geog_area);
 ```
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_344_0.png)
+![png](Mod4_proj_Durante_032720_files/Mod4_proj_Durante_032720_351_0.png)
 
 
 
@@ -10031,7 +10254,7 @@ plot_acf_pacf(ts.value)
 ```
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_345_0.png)
+![png](Mod4_proj_Durante_032720_files/Mod4_proj_Durante_032720_352_0.png)
 
 
 
@@ -10042,7 +10265,7 @@ plot_seasonal_decomp(ts.value);
 ```
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_346_0.png)
+![png](Mod4_proj_Durante_032720_files/Mod4_proj_Durante_032720_353_0.png)
 
 
 ### ARIMA parameters tuning
@@ -10120,7 +10343,7 @@ arima_forecast_enter_pdq(ts, geog_area, city, county, best_cfg, confint=2)
     Model:                 ARIMA(1, 1, 1)   Log Likelihood               -2170.032
     Method:                       css-mle   S.D. of innovations            893.671
     Date:                Tue, 24 Mar 2020   AIC                           4348.063
-    Time:                        13:34:09   BIC                           4362.367
+    Time:                        19:19:20   BIC                           4362.367
     Sample:                    05-01-1996   HQIC                          4353.811
                              - 04-01-2018                                         
     =================================================================================
@@ -10164,13 +10387,35 @@ arima_forecast_enter_pdq(ts, geog_area, city, county, best_cfg, confint=2)
 
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_351_2.png)
+![png](Mod4_proj_Durante_032720_files/Mod4_proj_Durante_032720_358_2.png)
 
 
 
 ```python
-# print_results_lists()
+print_results_lists()
 ```
+
+
+
+
+    (['95616', '95619', '95864', '95831', '95811', '95818'],
+     ['Davis',
+      'Diamond Springs',
+      'Arden-Arcade',
+      'Sacramento_Pocket',
+      'Sacramento_DosRios',
+      'Sacramento_LandPark'],
+     ['Yolo', 'El Dorado', 'Sacramento', 'Sacramento', 'Sacramento', 'Sacramento'],
+     [(2, 1, 2), (2, 1, 2), (8, 0, 2), (4, 0, 2), (10, 1, 0), (1, 1, 1)],
+     [717863.06, 355774.45, 449047.92, 386994.52, 570598.7, 563857.1],
+     [619575.34, 275292.09, 327568.68, 292621.1, 459606.77, 464602.96],
+     [816150.79, 436256.81, 570527.16, 481367.94, 681590.63, 663111.23],
+     [692300.0, 321100.0, 552700.0, 449300.0, 567500.0, 563900.0],
+     [3.69, 10.8, -18.75, -13.87, 0.55, -0.01],
+     [-10.5, -14.27, -40.73, -34.87, -19.01, -17.61],
+     [17.89, 35.86, 3.23, 7.14, 20.1, 17.59])
+
+
 
 
 ```python
@@ -10415,7 +10660,7 @@ plot_single_geog(df_melt, geog_area, 'value', 'Zip', figsize=(12, 6), fontsize1=
 ```
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_366_0.png)
+![png](Mod4_proj_Durante_032720_files/Mod4_proj_Durante_032720_373_0.png)
 
 
 
@@ -10426,7 +10671,7 @@ plt.title(geog_area);
 ```
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_367_0.png)
+![png](Mod4_proj_Durante_032720_files/Mod4_proj_Durante_032720_374_0.png)
 
 
 
@@ -10435,7 +10680,7 @@ plot_acf_pacf(ts.value)
 ```
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_368_0.png)
+![png](Mod4_proj_Durante_032720_files/Mod4_proj_Durante_032720_375_0.png)
 
 
 
@@ -10446,7 +10691,7 @@ plot_seasonal_decomp(ts.value);
 ```
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_369_0.png)
+![png](Mod4_proj_Durante_032720_files/Mod4_proj_Durante_032720_376_0.png)
 
 
 ### ARIMA parameters tuning
@@ -10519,7 +10764,7 @@ arima_forecast_enter_pdq(ts, geog_area, city, county, best_cfg, confint=2)
     Model:                     ARMA(4, 2)   Log Likelihood               -2158.700
     Method:                       css-mle   S.D. of innovations            812.114
     Date:                Tue, 24 Mar 2020   AIC                           4333.400
-    Time:                        13:34:41   BIC                           4362.037
+    Time:                        19:20:09   BIC                           4362.037
     Sample:                    04-01-1996   HQIC                          4344.906
                              - 04-01-2018                                         
     ===============================================================================
@@ -10584,7 +10829,7 @@ arima_forecast_enter_pdq(ts, geog_area, city, county, best_cfg, confint=2)
 
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_374_2.png)
+![png](Mod4_proj_Durante_032720_files/Mod4_proj_Durante_032720_381_2.png)
 
 
 
@@ -10872,7 +11117,7 @@ plot_single_geog(df_melt, geog_area, 'value', 'Zip', figsize=(12, 6), fontsize1=
 ```
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_389_0.png)
+![png](Mod4_proj_Durante_032720_files/Mod4_proj_Durante_032720_396_0.png)
 
 
 
@@ -10883,7 +11128,7 @@ plt.title(geog_area);
 ```
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_390_0.png)
+![png](Mod4_proj_Durante_032720_files/Mod4_proj_Durante_032720_397_0.png)
 
 
 
@@ -10892,7 +11137,7 @@ plot_acf_pacf(ts.value)
 ```
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_391_0.png)
+![png](Mod4_proj_Durante_032720_files/Mod4_proj_Durante_032720_398_0.png)
 
 
 
@@ -10903,7 +11148,7 @@ plot_seasonal_decomp(ts.value);
 ```
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_392_0.png)
+![png](Mod4_proj_Durante_032720_files/Mod4_proj_Durante_032720_399_0.png)
 
 
 ### ARIMA parameters tuning
@@ -10973,7 +11218,7 @@ arima_forecast_enter_pdq(ts, geog_area, city, county, best_cfg, confint=2)
     Model:                 ARIMA(2, 1, 2)   Log Likelihood               -2353.884
     Method:                       css-mle   S.D. of innovations           1780.582
     Date:                Tue, 24 Mar 2020   AIC                           4719.768
-    Time:                        13:35:02   BIC                           4741.223
+    Time:                        19:20:26   BIC                           4741.223
     Sample:                    05-01-1996   HQIC                          4728.389
                              - 04-01-2018                                         
     =================================================================================
@@ -11065,7 +11310,7 @@ arima_forecast_enter_pdq(ts, geog_area, city, county, best_cfg, confint=2)
 
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_397_2.png)
+![png](Mod4_proj_Durante_032720_files/Mod4_proj_Durante_032720_404_2.png)
 
 
 
@@ -11382,7 +11627,7 @@ plot_single_geog(df_melt, geog_area, 'value', 'Zip', figsize=(12, 6), fontsize1=
 ```
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_412_0.png)
+![png](Mod4_proj_Durante_032720_files/Mod4_proj_Durante_032720_419_0.png)
 
 
 
@@ -11393,7 +11638,7 @@ plt.title(geog_area);
 ```
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_413_0.png)
+![png](Mod4_proj_Durante_032720_files/Mod4_proj_Durante_032720_420_0.png)
 
 
 
@@ -11402,7 +11647,7 @@ plot_acf_pacf(ts.value)
 ```
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_414_0.png)
+![png](Mod4_proj_Durante_032720_files/Mod4_proj_Durante_032720_421_0.png)
 
 
 
@@ -11413,7 +11658,7 @@ plot_seasonal_decomp(ts.value);
 ```
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_415_0.png)
+![png](Mod4_proj_Durante_032720_files/Mod4_proj_Durante_032720_422_0.png)
 
 
 ### ARIMA parameters tuning
@@ -11481,7 +11726,7 @@ arima_forecast_enter_pdq(ts, geog_area, city, county, best_cfg, confint=2)
     Model:                 ARIMA(4, 1, 2)   Log Likelihood               -2210.851
     Method:                       css-mle   S.D. of innovations           1037.020
     Date:                Tue, 24 Mar 2020   AIC                           4437.702
-    Time:                        13:35:15   BIC                           4466.310
+    Time:                        19:20:42   BIC                           4466.310
     Sample:                    05-01-1996   HQIC                          4449.198
                              - 04-01-2018                                         
     =================================================================================
@@ -11592,7 +11837,7 @@ arima_forecast_enter_pdq(ts, geog_area, city, county, best_cfg, confint=2)
 
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_420_2.png)
+![png](Mod4_proj_Durante_032720_files/Mod4_proj_Durante_032720_427_2.png)
 
 
 
@@ -11925,7 +12170,7 @@ plot_single_geog(df_melt, geog_area, 'value', 'Zip', figsize=(12, 6), fontsize1=
 ```
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_435_0.png)
+![png](Mod4_proj_Durante_032720_files/Mod4_proj_Durante_032720_442_0.png)
 
 
 
@@ -11936,7 +12181,7 @@ plt.title(geog_area);
 ```
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_436_0.png)
+![png](Mod4_proj_Durante_032720_files/Mod4_proj_Durante_032720_443_0.png)
 
 
 
@@ -11945,7 +12190,7 @@ plot_acf_pacf(ts.value)
 ```
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_437_0.png)
+![png](Mod4_proj_Durante_032720_files/Mod4_proj_Durante_032720_444_0.png)
 
 
 
@@ -11956,7 +12201,7 @@ plot_seasonal_decomp(ts.value);
 ```
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_438_0.png)
+![png](Mod4_proj_Durante_032720_files/Mod4_proj_Durante_032720_445_0.png)
 
 
 ### ARIMA parameters tuning
@@ -12016,7 +12261,7 @@ arima_forecast_enter_pdq(ts, geog_area, city, county, best_cfg, confint=2)
     Model:                     ARMA(6, 1)   Log Likelihood               -2136.708
     Method:                       css-mle   S.D. of innovations            750.047
     Date:                Tue, 24 Mar 2020   AIC                           4291.416
-    Time:                        13:35:23   BIC                           4323.634
+    Time:                        19:20:58   BIC                           4323.634
     Sample:                    04-01-1996   HQIC                          4304.361
                              - 04-01-2018                                         
     ===============================================================================
@@ -12146,7 +12391,7 @@ arima_forecast_enter_pdq(ts, geog_area, city, county, best_cfg, confint=2)
 
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_443_2.png)
+![png](Mod4_proj_Durante_032720_files/Mod4_proj_Durante_032720_450_2.png)
 
 
 
@@ -12495,7 +12740,7 @@ plot_single_geog(df_melt, geog_area, 'value', 'Zip', figsize=(12, 6), fontsize1=
 ```
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_458_0.png)
+![png](Mod4_proj_Durante_032720_files/Mod4_proj_Durante_032720_465_0.png)
 
 
 
@@ -12506,7 +12751,7 @@ plt.title(geog_area);
 ```
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_459_0.png)
+![png](Mod4_proj_Durante_032720_files/Mod4_proj_Durante_032720_466_0.png)
 
 
 
@@ -12515,7 +12760,7 @@ plot_acf_pacf(ts.value)
 ```
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_460_0.png)
+![png](Mod4_proj_Durante_032720_files/Mod4_proj_Durante_032720_467_0.png)
 
 
 
@@ -12526,7 +12771,7 @@ plot_seasonal_decomp(ts.value);
 ```
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_461_0.png)
+![png](Mod4_proj_Durante_032720_files/Mod4_proj_Durante_032720_468_0.png)
 
 
 ### ARIMA parameters tuning
@@ -12601,7 +12846,7 @@ arima_forecast_enter_pdq(ts, geog_area, city, county, best_cfg, confint=2)
     Model:                 ARIMA(2, 1, 2)   Log Likelihood               -2056.594
     Method:                       css-mle   S.D. of innovations            579.070
     Date:                Tue, 24 Mar 2020   AIC                           4125.188
-    Time:                        13:35:35   BIC                           4146.644
+    Time:                        19:21:15   BIC                           4146.644
     Sample:                    05-01-1996   HQIC                          4133.810
                              - 04-01-2018                                         
     =================================================================================
@@ -12734,7 +12979,7 @@ arima_forecast_enter_pdq(ts, geog_area, city, county, best_cfg, confint=2)
 
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_466_2.png)
+![png](Mod4_proj_Durante_032720_files/Mod4_proj_Durante_032720_473_2.png)
 
 
 
@@ -13087,7 +13332,7 @@ plot_single_geog(df_melt, geog_area, 'value', 'Zip', figsize=(12, 6), fontsize1=
 ```
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_480_0.png)
+![png](Mod4_proj_Durante_032720_files/Mod4_proj_Durante_032720_487_0.png)
 
 
 
@@ -13098,7 +13343,7 @@ plt.title(geog_area);
 ```
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_481_0.png)
+![png](Mod4_proj_Durante_032720_files/Mod4_proj_Durante_032720_488_0.png)
 
 
 
@@ -13107,7 +13352,7 @@ plot_acf_pacf(ts.value)
 ```
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_482_0.png)
+![png](Mod4_proj_Durante_032720_files/Mod4_proj_Durante_032720_489_0.png)
 
 
 
@@ -13118,7 +13363,7 @@ plot_seasonal_decomp(ts.value);
 ```
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_483_0.png)
+![png](Mod4_proj_Durante_032720_files/Mod4_proj_Durante_032720_490_0.png)
 
 
 ### ARIMA parameters tuning
@@ -13193,7 +13438,7 @@ arima_forecast_enter_pdq(ts, geog_area, city, county, best_cfg, confint=2)
     Model:                 ARIMA(4, 1, 2)   Log Likelihood               -2050.768
     Method:                       css-mle   S.D. of innovations            566.552
     Date:                Tue, 24 Mar 2020   AIC                           4117.537
-    Time:                        13:35:40   BIC                           4146.144
+    Time:                        19:21:32   BIC                           4146.144
     Sample:                    05-01-1996   HQIC                          4129.032
                              - 04-01-2018                                         
     =================================================================================
@@ -13361,7 +13606,7 @@ arima_forecast_enter_pdq(ts, geog_area, city, county, best_cfg, confint=2)
 
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_488_2.png)
+![png](Mod4_proj_Durante_032720_files/Mod4_proj_Durante_032720_495_2.png)
 
 
 
@@ -13750,7 +13995,7 @@ plot_single_geog(df_melt, geog_area, 'value', 'Zip', figsize=(12, 6), fontsize1=
 ```
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_503_0.png)
+![png](Mod4_proj_Durante_032720_files/Mod4_proj_Durante_032720_510_0.png)
 
 
 
@@ -13761,7 +14006,7 @@ plt.title(geog_area);
 ```
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_504_0.png)
+![png](Mod4_proj_Durante_032720_files/Mod4_proj_Durante_032720_511_0.png)
 
 
 
@@ -13770,7 +14015,7 @@ plot_acf_pacf(ts.value)
 ```
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_505_0.png)
+![png](Mod4_proj_Durante_032720_files/Mod4_proj_Durante_032720_512_0.png)
 
 
 
@@ -13781,7 +14026,7 @@ plot_seasonal_decomp(ts.value);
 ```
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_506_0.png)
+![png](Mod4_proj_Durante_032720_files/Mod4_proj_Durante_032720_513_0.png)
 
 
 ### ARIMA parameters tuning
@@ -13842,7 +14087,7 @@ arima_forecast_enter_pdq(ts, geog_area, city, county, best_cfg, confint=2)
     Model:                     ARMA(4, 2)   Log Likelihood               -2191.961
     Method:                       css-mle   S.D. of innovations            920.005
     Date:                Tue, 24 Mar 2020   AIC                           4399.921
-    Time:                        13:35:47   BIC                           4428.559
+    Time:                        19:21:59   BIC                           4428.559
     Sample:                    04-01-1996   HQIC                          4411.428
                              - 04-01-2018                                         
     ===============================================================================
@@ -14021,7 +14266,7 @@ arima_forecast_enter_pdq(ts, geog_area, city, county, best_cfg, confint=2)
 
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_511_2.png)
+![png](Mod4_proj_Durante_032720_files/Mod4_proj_Durante_032720_518_2.png)
 
 
 
@@ -14421,7 +14666,7 @@ plot_single_geog(df_melt, geog_area, 'value', 'Zip', figsize=(12, 6), fontsize1=
 ```
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_526_0.png)
+![png](Mod4_proj_Durante_032720_files/Mod4_proj_Durante_032720_533_0.png)
 
 
 
@@ -14432,7 +14677,7 @@ plt.title(geog_area);
 ```
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_527_0.png)
+![png](Mod4_proj_Durante_032720_files/Mod4_proj_Durante_032720_534_0.png)
 
 
 
@@ -14441,7 +14686,7 @@ plot_acf_pacf(ts.value)
 ```
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_528_0.png)
+![png](Mod4_proj_Durante_032720_files/Mod4_proj_Durante_032720_535_0.png)
 
 
 
@@ -14452,7 +14697,7 @@ plot_seasonal_decomp(ts.value);
 ```
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_529_0.png)
+![png](Mod4_proj_Durante_032720_files/Mod4_proj_Durante_032720_536_0.png)
 
 
 ### ARIMA parameters tuning
@@ -14532,7 +14777,7 @@ arima_forecast_enter_pdq(ts, geog_area, city, county, best_cfg, confint=2)
     Model:                     ARMA(4, 2)   Log Likelihood               -2273.008
     Method:                       css-mle   S.D. of innovations           1249.597
     Date:                Tue, 24 Mar 2020   AIC                           4562.015
-    Time:                        13:35:53   BIC                           4590.653
+    Time:                        19:22:16   BIC                           4590.653
     Sample:                    04-01-1996   HQIC                          4573.522
                              - 04-01-2018                                         
     ===============================================================================
@@ -14722,7 +14967,7 @@ arima_forecast_enter_pdq(ts, geog_area, city, county, best_cfg, confint=2)
 
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_534_2.png)
+![png](Mod4_proj_Durante_032720_files/Mod4_proj_Durante_032720_541_2.png)
 
 
 
@@ -15134,7 +15379,7 @@ plot_single_geog(df_melt, geog_area, 'value', 'Zip', figsize=(12, 6), fontsize1=
 ```
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_549_0.png)
+![png](Mod4_proj_Durante_032720_files/Mod4_proj_Durante_032720_556_0.png)
 
 
 
@@ -15145,7 +15390,7 @@ plt.title(geog_area);
 ```
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_550_0.png)
+![png](Mod4_proj_Durante_032720_files/Mod4_proj_Durante_032720_557_0.png)
 
 
 
@@ -15154,7 +15399,7 @@ plot_acf_pacf(ts.value)
 ```
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_551_0.png)
+![png](Mod4_proj_Durante_032720_files/Mod4_proj_Durante_032720_558_0.png)
 
 
 
@@ -15165,7 +15410,7 @@ plot_seasonal_decomp(ts.value);
 ```
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_552_0.png)
+![png](Mod4_proj_Durante_032720_files/Mod4_proj_Durante_032720_559_0.png)
 
 
 ### ARIMA parameters tuning
@@ -15229,7 +15474,7 @@ arima_forecast_enter_pdq(ts, geog_area, city, county, best_cfg, confint=2)
     Model:                 ARIMA(2, 2, 2)   Log Likelihood               -2138.636
     Method:                       css-mle   S.D. of innovations            817.527
     Date:                Tue, 24 Mar 2020   AIC                           4289.272
-    Time:                        13:35:58   BIC                           4310.705
+    Time:                        19:22:30   BIC                           4310.705
     Sample:                    06-01-1996   HQIC                          4297.885
                              - 04-01-2018                                         
     ==================================================================================
@@ -15426,7 +15671,7 @@ arima_forecast_enter_pdq(ts, geog_area, city, county, best_cfg, confint=2)
 
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_557_2.png)
+![png](Mod4_proj_Durante_032720_files/Mod4_proj_Durante_032720_564_2.png)
 
 
 
@@ -15849,7 +16094,7 @@ plot_single_geog(df_melt, geog_area, 'value', 'Zip', figsize=(12, 6), fontsize1=
 ```
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_572_0.png)
+![png](Mod4_proj_Durante_032720_files/Mod4_proj_Durante_032720_579_0.png)
 
 
 
@@ -15860,7 +16105,7 @@ plt.title(geog_area);
 ```
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_573_0.png)
+![png](Mod4_proj_Durante_032720_files/Mod4_proj_Durante_032720_580_0.png)
 
 
 
@@ -15869,7 +16114,7 @@ plot_acf_pacf(ts.value)
 ```
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_574_0.png)
+![png](Mod4_proj_Durante_032720_files/Mod4_proj_Durante_032720_581_0.png)
 
 
 
@@ -15880,7 +16125,7 @@ plot_seasonal_decomp(ts.value);
 ```
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_575_0.png)
+![png](Mod4_proj_Durante_032720_files/Mod4_proj_Durante_032720_582_0.png)
 
 
 ### ARIMA parameters tuning
@@ -15965,7 +16210,7 @@ arima_forecast_enter_pdq(ts, geog_area, city, county, best_cfg, confint=2)
     Model:                     ARMA(4, 2)   Log Likelihood               -2079.915
     Method:                       css-mle   S.D. of innovations            602.304
     Date:                Tue, 24 Mar 2020   AIC                           4175.830
-    Time:                        13:36:05   BIC                           4204.468
+    Time:                        19:22:48   BIC                           4204.468
     Sample:                    04-01-1996   HQIC                          4187.337
                              - 04-01-2018                                         
     ===============================================================================
@@ -16177,7 +16422,7 @@ arima_forecast_enter_pdq(ts, geog_area, city, county, best_cfg, confint=2)
 
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_580_2.png)
+![png](Mod4_proj_Durante_032720_files/Mod4_proj_Durante_032720_587_2.png)
 
 
 
@@ -16611,7 +16856,7 @@ plot_single_geog(df_melt, geog_area, 'value', 'Zip', figsize=(12, 6), fontsize1=
 ```
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_595_0.png)
+![png](Mod4_proj_Durante_032720_files/Mod4_proj_Durante_032720_602_0.png)
 
 
 
@@ -16622,7 +16867,7 @@ plt.title(geog_area);
 ```
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_596_0.png)
+![png](Mod4_proj_Durante_032720_files/Mod4_proj_Durante_032720_603_0.png)
 
 
 
@@ -16631,7 +16876,7 @@ plot_acf_pacf(ts.value)
 ```
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_597_0.png)
+![png](Mod4_proj_Durante_032720_files/Mod4_proj_Durante_032720_604_0.png)
 
 
 
@@ -16642,7 +16887,7 @@ plot_seasonal_decomp(ts.value);
 ```
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_598_0.png)
+![png](Mod4_proj_Durante_032720_files/Mod4_proj_Durante_032720_605_0.png)
 
 
 ### ARIMA parameters tuning
@@ -16716,7 +16961,7 @@ arima_forecast_enter_pdq(ts, geog_area, city, county, best_cfg, confint=2)
     Model:                     ARMA(4, 2)   Log Likelihood               -2111.269
     Method:                       css-mle   S.D. of innovations            677.388
     Date:                Tue, 24 Mar 2020   AIC                           4238.539
-    Time:                        13:36:10   BIC                           4267.176
+    Time:                        19:23:08   BIC                           4267.176
     Sample:                    04-01-1996   HQIC                          4250.045
                              - 04-01-2018                                         
     ===============================================================================
@@ -16939,7 +17184,7 @@ arima_forecast_enter_pdq(ts, geog_area, city, county, best_cfg, confint=2)
 
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_603_2.png)
+![png](Mod4_proj_Durante_032720_files/Mod4_proj_Durante_032720_610_2.png)
 
 
 
@@ -17383,7 +17628,7 @@ plot_single_geog(df_melt, geog_area, 'value', 'Zip', figsize=(12, 6), fontsize1=
 ```
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_618_0.png)
+![png](Mod4_proj_Durante_032720_files/Mod4_proj_Durante_032720_625_0.png)
 
 
 
@@ -17394,7 +17639,7 @@ plt.title(geog_area);
 ```
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_619_0.png)
+![png](Mod4_proj_Durante_032720_files/Mod4_proj_Durante_032720_626_0.png)
 
 
 
@@ -17403,7 +17648,7 @@ plot_acf_pacf(ts.value)
 ```
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_620_0.png)
+![png](Mod4_proj_Durante_032720_files/Mod4_proj_Durante_032720_627_0.png)
 
 
 
@@ -17414,7 +17659,7 @@ plot_seasonal_decomp(ts.value);
 ```
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_621_0.png)
+![png](Mod4_proj_Durante_032720_files/Mod4_proj_Durante_032720_628_0.png)
 
 
 ### ARIMA parameters tuning
@@ -17489,7 +17734,7 @@ arima_forecast_enter_pdq(ts, geog_area, city, county, best_cfg, confint=2)
     Model:                 ARIMA(4, 1, 2)   Log Likelihood               -2141.289
     Method:                       css-mle   S.D. of innovations            797.993
     Date:                Tue, 24 Mar 2020   AIC                           4298.578
-    Time:                        13:36:26   BIC                           4327.186
+    Time:                        19:23:23   BIC                           4327.186
     Sample:                    05-01-1996   HQIC                          4310.073
                              - 04-01-2018                                         
     =================================================================================
@@ -17723,7 +17968,7 @@ arima_forecast_enter_pdq(ts, geog_area, city, county, best_cfg, confint=2)
 
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_626_2.png)
+![png](Mod4_proj_Durante_032720_files/Mod4_proj_Durante_032720_633_2.png)
 
 
 
@@ -18178,7 +18423,7 @@ plot_single_geog(df_melt, geog_area, 'value', 'Zip', figsize=(12, 6), fontsize1=
 ```
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_641_0.png)
+![png](Mod4_proj_Durante_032720_files/Mod4_proj_Durante_032720_648_0.png)
 
 
 
@@ -18189,7 +18434,7 @@ plt.title(geog_area);
 ```
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_642_0.png)
+![png](Mod4_proj_Durante_032720_files/Mod4_proj_Durante_032720_649_0.png)
 
 
 
@@ -18198,7 +18443,7 @@ plot_acf_pacf(ts.value)
 ```
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_643_0.png)
+![png](Mod4_proj_Durante_032720_files/Mod4_proj_Durante_032720_650_0.png)
 
 
 
@@ -18209,7 +18454,7 @@ plot_seasonal_decomp(ts.value);
 ```
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_644_0.png)
+![png](Mod4_proj_Durante_032720_files/Mod4_proj_Durante_032720_651_0.png)
 
 
 ### ARIMA parameters tuning
@@ -18287,7 +18532,7 @@ arima_forecast_enter_pdq(ts, geog_area, city, county, best_cfg, confint=2)
     Model:                 ARIMA(2, 2, 2)   Log Likelihood               -2077.640
     Method:                       css-mle   S.D. of innovations            647.619
     Date:                Tue, 24 Mar 2020   AIC                           4167.279
-    Time:                        13:36:34   BIC                           4188.712
+    Time:                        19:23:43   BIC                           4188.712
     Sample:                    06-01-1996   HQIC                          4175.893
                              - 04-01-2018                                         
     ==================================================================================
@@ -18528,7 +18773,7 @@ arima_forecast_enter_pdq(ts, geog_area, city, county, best_cfg, confint=2)
 
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_649_2.png)
+![png](Mod4_proj_Durante_032720_files/Mod4_proj_Durante_032720_656_2.png)
 
 
 
@@ -18997,7 +19242,7 @@ plot_single_geog(df_melt, geog_area, 'value', 'Zip', figsize=(12, 6), fontsize1=
 ```
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_665_0.png)
+![png](Mod4_proj_Durante_032720_files/Mod4_proj_Durante_032720_672_0.png)
 
 
 
@@ -19008,7 +19253,7 @@ plt.title(geog_area);
 ```
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_666_0.png)
+![png](Mod4_proj_Durante_032720_files/Mod4_proj_Durante_032720_673_0.png)
 
 
 
@@ -19017,7 +19262,7 @@ plot_acf_pacf(ts.value)
 ```
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_667_0.png)
+![png](Mod4_proj_Durante_032720_files/Mod4_proj_Durante_032720_674_0.png)
 
 
 
@@ -19028,7 +19273,7 @@ plot_seasonal_decomp(ts.value);
 ```
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_668_0.png)
+![png](Mod4_proj_Durante_032720_files/Mod4_proj_Durante_032720_675_0.png)
 
 
 ### ARIMA parameters tuning
@@ -19105,7 +19350,7 @@ arima_forecast_enter_pdq(ts, geog_area, city, county, best_cfg, confint=2)
     Model:                 ARIMA(2, 1, 2)   Log Likelihood               -2211.878
     Method:                       css-mle   S.D. of innovations           1041.677
     Date:                Tue, 24 Mar 2020   AIC                           4435.757
-    Time:                        13:36:46   BIC                           4457.212
+    Time:                        19:23:54   BIC                           4457.212
     Sample:                    05-01-1996   HQIC                          4444.378
                              - 04-01-2018                                         
     =================================================================================
@@ -19357,7 +19602,7 @@ arima_forecast_enter_pdq(ts, geog_area, city, county, best_cfg, confint=2)
 
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_673_2.png)
+![png](Mod4_proj_Durante_032720_files/Mod4_proj_Durante_032720_680_2.png)
 
 
 
@@ -21008,7 +21253,7 @@ fig, ax = plot_ts_zips(df_sac, geog_areas, nrows=11, ncols=2, figsize=(18, 50), 
 ```
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_694_0.png)
+![png](Mod4_proj_Durante_032720_files/Mod4_proj_Durante_032720_701_0.png)
 
 
 ### Visualization of semi-finalist ZIP codes, labeled with ZIP *AND* city
@@ -21148,7 +21393,7 @@ zip_semifinalists(df_sac, dict_semifinal_city_zip, col = 'value', nrows=11, ncol
 ```
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_705_0.png)
+![png](Mod4_proj_Durante_032720_files/Mod4_proj_Durante_032720_712_0.png)
 
 
 ### Create 6 ZIP plots at one time (PowerPoint-friendlier format)
@@ -21238,7 +21483,7 @@ zip_semifinalists(df_sac, dict_semi_0_6, col = 'value', nrows=3, ncols=2, figsiz
 ```
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_713_0.png)
+![png](Mod4_proj_Durante_032720_files/Mod4_proj_Durante_032720_720_0.png)
 
 
 
@@ -21247,7 +21492,7 @@ zip_semifinalists(df_sac, dict_semi_6_12, col = 'value', nrows=3, ncols=2, figsi
 ```
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_714_0.png)
+![png](Mod4_proj_Durante_032720_files/Mod4_proj_Durante_032720_721_0.png)
 
 
 
@@ -21256,7 +21501,7 @@ zip_semifinalists(df_sac, dict_semi_12_18, col = 'value', nrows=3, ncols=2, figs
 ```
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_715_0.png)
+![png](Mod4_proj_Durante_032720_files/Mod4_proj_Durante_032720_722_0.png)
 
 
 
@@ -21265,7 +21510,7 @@ zip_semifinalists(df_sac, dict_semi_18_20, col = 'value', nrows=3, ncols=2, figs
 ```
 
 
-![png](Mod4_proj_Durante_032420_files/Mod4_proj_Durante_032420_716_0.png)
+![png](Mod4_proj_Durante_032720_files/Mod4_proj_Durante_032720_723_0.png)
 
 
 ## Recommended ZIP Codes
@@ -21338,3 +21583,22 @@ zip_semifinalists(df_sac, dict_semi_18_20, col = 'value', nrows=3, ncols=2, figs
 #### Granite Bay, CA (95746) ZIP code map (Placer County) (https://california.hometownlocator.com/)
 
 <center><img src='images/GraniteBay_95746_map.png' height=50% width=50%>
+
+
+```python
+
+```
+
+
+```python
+
+```
+
+# Notebook spacer
+
+
+# Notebook spacer
+
+
+# Notebook spacer
+
