@@ -92,7 +92,7 @@ The output below is from a function that runs all possible combinations of p, d,
 
 In the example of the City of Davis, the best p,d,q combination is (2,1,2).
 
-<img align="left" src='images/pdq_optimize_davis.png' height=35% width=35%>
+<img src='images/pdq_optimize_davis.png' height=35% width=35%>
 
 #### ARIMA modeling and forecasting
 
@@ -106,7 +106,7 @@ Once I obtained the optimal p,d,q parameters, it was a relatively straightforwar
 
 <img align="left" src='images/ARIMA_model_davis.png' height=100% width=100%>
 
-<img align="left" src='images/forecast_plot_95616.png' height=60% width=60%>
+<img align="center" src='images/forecast_plot_95616.png' height=60% width=60%>
 
 ### Making the final decision regarding which 5 ZIP codes to recommend
 
@@ -160,23 +160,23 @@ Regarding the range of return between the best- and worst-case scenarios:
 
 #### South Lake Tahoe (96150)
 
-<img align="left" src='images/forecast_plot_96150.png' height=60% width=60%>
+<img align="center" src='images/forecast_plot_96150.png' height=60% width=60%>
 
 #### Rescue (95672)
 
-<img align="left" src='images/forecast_plot_95672.png' height=60% width=60%>
+<img align="center" src='images/forecast_plot_95672.png' height=60% width=60%>
 
 #### Auburn (95602)
 
-<img align="left" src='images/forecast_plot_95602.png' height=60% width=60%>
+<img align="center" src='images/forecast_plot_95602.png' height=60% width=60%>
 
 #### Diamond Springs (95619)
 
-<img align="left" src='images/forecast_plot_95619.png' height=60% width=60%>
+<img align="center" src='images/forecast_plot_95619.png' height=60% width=60%>
 
 #### Granite Bay (95746)
 
-<img align="left" src='images/forecast_plot_95746.png' height=60% width=60%>
+<img align="center" src='images/forecast_plot_95746.png' height=60% width=60%>
 
 ## Possible future directions
 
