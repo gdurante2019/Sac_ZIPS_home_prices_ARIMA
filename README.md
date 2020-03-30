@@ -126,7 +126,7 @@ The complete Jupyter notebook containing all analyses is available
 
 ### Summary table:  all semi-finalist ZIP codes
 
-<img align="left" src='images/results_table.png' height=95% width=95%>
+<img align="center" src='images/results_table.png' height=95% width=95%>
 
 The summary table is sorted by the investment rating, which was based primarily on the percentage increase (or decrease) in value at the end of the 24-month forecast period.  The top 5 ZIP codes all have returns of ~10% or greater, with strong upside potential that is greater on a percentage basis than the downside risk of the worst-case scenario.  
 
