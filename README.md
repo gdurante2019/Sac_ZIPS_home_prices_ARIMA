@@ -13,6 +13,9 @@ The project asks the student to identify the 5 "best" ZIP codes for investment, 
 
 Because the investment group is located in the Sacramento region, and because the Sacramento area has experience steady group over the last few decades (fueled in part by skyrocketing costs in the SF Bay Area, prompting some businesses to launch or relocate to the Sacramento region), I focused most of my efforts on the Sacramento metro area.  Because I have lived here for a number of years, I have some knowledge of the region, which has provided some helpful insights informing the analysis.
 
+The complete Jupyter notebook containing all analyses is available
+[here.](https://github.com/gdurante2019/dsc-mod-4-project-online-ds-sp-000/blob/master/Mod4_proj_Durante_033020.ipynb)
+
 ### Sacramento metro area (counties)
 
 <center><img src='images/Sac_metro_counties_map.png' height=80% width=80%>
@@ -120,7 +123,7 @@ In earlier analyses, I had come across some ZIP codes with good predicted return
 * Large gains or losses suggested by best-case and worst-case scenarios imply high volatility--something to be avoided unless the investor is risk-tolerant.
 
 The complete Jupyter notebook containing all analyses is available
-[here.](https://github.com/gdurante2019/dsc-mod-4-project-online-ds-sp-000/blob/master/Mod4_proj_Durante_032720.ipynb)
+[here.](https://github.com/gdurante2019/dsc-mod-4-project-online-ds-sp-000/blob/master/Mod4_proj_Durante_033020.ipynb)
 
 ## Summary of results
 
