@@ -3,18 +3,14 @@
 
 ## Overview
 
-The Module 4 Project in the Flatiron School Data Science Version 2 Curriculum is meant to provide students with experience in working with time series data--in this case, monthly housing values from 04/01/1996 to 03/01/2018 for over 14,000 ZIP Codes in the U.S.  Skill sets required to complete this project include dataframe manipulation, data cleaning, data visualization, and time series analysis, and other areas (e.g., using github, Jupyter notebooks for data science projects, and writing and posting a blog).  
-
-## Project topic
-
-The project asks the student to identify the 5 "best" ZIP codes for investment, as defined by the student, and develop support for these recommendations to a hypothetical client (e.g., a real estate investment trust).  The student must develop a methodology for evaluating ZIP codes as potential investment targets and support these findings through a technical Jupyter notebook, a non-technical PowerPoint presentation, and a blog post.  
+The Module 4 Project in the Flatiron School Data Science Version 2 Curriculum is meant to provide students with experience in working with time series data--in this case, monthly housing values from 04/01/1996 to 03/01/2018 for over 14,000 ZIP Codes in the U.S. The project asks the student to identify the 5 "best" ZIP codes for investment, as defined by the student, and develop support for these recommendations to a hypothetical client (e.g., a real estate investment trust). The student must develop a methodology for evaluating ZIP codes as potential investment targets and support these findings through a technical Jupyter notebook, a non-technical PowerPoint presentation, and a blog post. 
 
 ## My focus:  Sacramento metro area
 
 Because the investment group is located in the Sacramento region, and because the Sacramento area has experience steady group over the last few decades (fueled in part by skyrocketing costs in the SF Bay Area, prompting some businesses to launch or relocate to the Sacramento region), I focused most of my efforts on the Sacramento metro area.  Because I have lived here for a number of years, I have some knowledge of the region, which has provided some helpful insights informing the analysis.
 
 The complete Jupyter notebook containing all analyses is available
-[here.](https://github.com/gdurante2019/dsc-mod-4-project-online-ds-sp-000/blob/master/Mod4_proj_Durante_033020.ipynb)
+[here.](https://github.com/gdurante2019/dsc-mod-4-project-online-ds-sp-000/blob/master/Mod4_proj_Durante_040520.ipynb)
 
 ### Sacramento metro area (counties)
 
@@ -123,7 +119,7 @@ In earlier analyses, I had come across some ZIP codes with good predicted return
 * Large gains or losses suggested by best-case and worst-case scenarios imply high volatility--something to be avoided unless the investor is risk-tolerant.
 
 The complete Jupyter notebook containing all analyses is available
-[here.](https://github.com/gdurante2019/dsc-mod-4-project-online-ds-sp-000/blob/master/Mod4_proj_Durante_033020.ipynb)
+[here.](https://github.com/gdurante2019/dsc-mod-4-project-online-ds-sp-000/blob/master/Mod4_proj_Durante_040520.ipynb)
 
 ## Summary of results
 
