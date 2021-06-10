@@ -1,5 +1,5 @@
 
-# Mod 4 Project - Gina Durante
+# Housing price prediction by ZIP Code:  Analyzing time series data using ARIMA
 
 ## Overview
 
