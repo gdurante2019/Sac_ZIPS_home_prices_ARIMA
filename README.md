@@ -3,16 +3,16 @@
 
 ## Overview
 
-The Module 4 Project in the Flatiron School Data Science Version 2 Curriculum is meant to provide students with experience in working with time series data--in this case, monthly housing values from 04/01/1996 to 03/01/2018 for over 14,000 ZIP Codes in the U.S. The project asks the student to identify the 5 "best" ZIP codes for investment, as defined by the student, and develop support for these recommendations to a hypothetical client (e.g., a real estate investment trust). The student must develop a methodology for evaluating ZIP codes as potential investment targets and support these findings through a technical Jupyter notebook, a non-technical PowerPoint presentation, and a blog post. 
+My fourth project in my Flatiron School Data Science Immersive program dealt with time series data--in this case, monthly housing values from 04/01/1996 to 03/01/2018 for over 14,000 ZIP Codes in the U.S.  The project requires identification of the 5 "best" (as defined by the student) ZIP codes for investment and develop support for these recommendations to a hypothetical client (e.g., a real estate investment trust).  
 
 Note:  this project was completed in early 2020, prior to the Covid-19 pandemic.
 
 ## My focus:  Sacramento metro area
 
-Because the investment group is located in the Sacramento region, and because the Sacramento area has experience steady group over the last few decades (fueled in part by skyrocketing costs in the SF Bay Area, prompting some businesses to launch or relocate to the Sacramento region), I focused most of my efforts on the Sacramento metro area.  Because I have lived here for a number of years, I have some knowledge of the region, which has provided some helpful insights informing the analysis.
+Because the investment group is located in the Sacramento region, and because the Sacramento area has experience steady growth over the last few decades, I focused most of my efforts on the Sacramento metro area.  Living in the Sacramento region for a number of years has provided me with some helpful insights to inform my analysis.
 
 The complete Jupyter notebook containing all analyses is available
-[here.](https://github.com/gdurante2019/dsc-mod-4-project-online-ds-sp-000/blob/master/Mod4_proj_Durante_040520.ipynb)
+[here.](https://github.com/gdurante2019/Sac_ZIPS_home_prices_ARIMA/blob/master/ARIMA_home_prices_sactoregion_040520.ipynb)
 
 ### Sacramento metro area (counties)
 
@@ -46,7 +46,7 @@ Compare the city-wide average plots above to the plots by city, by ZIP code, bel
 
 <center><img src='images/city_zips_roseville_sacto.png' height=90% width=90%>
 
-As may be obvious in the case of the plot of ZIP codes in the City of Sacramento above, the value of plotting all ZIP codes in one figure may not be very useful if there are a large number of ZIP codes in that area.  In the case of Sacramento, I used the same iterative function to plot all of the ZIP codes within the City of Sacramento on different plots.  In this way, I could visually compare the different ZIP codes side-by-side as another tool for deciding which ZIP codes to focus on further.  
+As the plot of ZIP codes in the City of Sacramento demonstrates, the value of plotting all ZIP codes in one figure may not be very useful if there are a large number of ZIP codes in that area.  In the case of Sacramento, I used the same iterative function to plot all of the ZIP codes within the City of Sacramento on different plots.  In this way, I could visually compare the different ZIP codes side-by-side as another tool for deciding which ZIP codes to focus on further.  
 
 ##### Comparing ZIP codes within cities to city-wide average plots:
 
