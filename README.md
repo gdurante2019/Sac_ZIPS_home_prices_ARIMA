@@ -190,5 +190,5 @@ Beyond analysis of additional ZIP codes in the Sacramento area, I've identified 
 - Scaling investment by population size 
 - Construct a basket of investments (e.g., $10M, weighted by ZIP population?)
 
-The notebook containing the US-metro level visualizations can be found at https://github.com/gdurante2019/Sac_ZIPS_home_prices_ARIMA/blob/master/ARIMA_Home_Prices_Metros_011021.ipynb.   
+The notebook containing the US-metro level visualizations can be found [here.](https://github.com/gdurante2019/Sac_ZIPS_home_prices_ARIMA/blob/master/ARIMA_Home_Prices_Metros_011021.ipynb)
 
