@@ -5,11 +5,11 @@
 
 My fourth project in my Flatiron School Data Science Immersive program dealt with time series data--in this case, monthly housing values from 04/01/1996 to 03/01/2018 for over 14,000 ZIP Codes in the U.S.  The project requires identification of the 5 "best" (as defined by the student) ZIP codes for investment and develop support for these recommendations to a hypothetical client (e.g., a real estate investment trust).  
 
-Note:  this project was completed in early 2020, prior to the Covid-19 pandemic.
+_**Note:**  this project was completed in early 2020, prior to the Covid-19 pandemic.  The economic impacts of the Covid-19 pandemic--as well as government stimulus spending to help businesses and individuals weather the resulting financial hardships--created uncharacteristic housing market fluctuations that could not have been predicted in this analysis._
 
-## My focus:  Sacramento metro area
+## My focus:  Sacramento Metropolitan Area
 
-Because the investment group is located in the Sacramento region, and because the Sacramento area has experience steady growth over the last few decades, I focused most of my efforts on the Sacramento metro area.  Living in the Sacramento region for a number of years has provided me with some helpful insights to inform my analysis.
+Because the Sacramento area has experience steady growth over the last few decades, and because I live in the region (providing me with some background knowledge to consider as I developed my analyses), my hypothetical investment group was focused on the Sacramento Metropolitan Area.  
 
 The complete Jupyter notebook containing all analyses is available
 [here.](https://github.com/gdurante2019/Sac_ZIPS_home_prices_ARIMA/blob/master/ARIMA_home_prices_sactoregion_040520.ipynb)
