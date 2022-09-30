@@ -9,7 +9,7 @@ _**Note:**  this project was completed in early 2020, prior to the Covid-19 pand
 
 ## My focus:  Sacramento Metropolitan Area
 
-Because the Sacramento area has experience steady growth over the last few decades, and because I live in the region (providing me with some background knowledge to consider as I developed my analyses), my hypothetical investment group was focused on the Sacramento Metropolitan Area.  
+Because the Sacramento area has experience steady growth over the last few decades, and because I live in the region (providing me with some background knowledge to consider as I developed my analyses), my hypothetical investment group focused on the Sacramento Metropolitan Area.  
 
 The complete Jupyter notebook containing all analyses is available
 [here.](https://github.com/gdurante2019/Sac_ZIPS_home_prices_ARIMA/blob/master/ARIMA_home_prices_sactoregion_040520.ipynb)
