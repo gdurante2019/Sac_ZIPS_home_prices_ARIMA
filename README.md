@@ -5,7 +5,7 @@
 
 This project analyzed Zillow monthly housing values for over 14,000 ZIP Codes in the U.S. from 04/01/1996 to 03/01/2018.  The project was one of five I completed to graduate from the Flatiron School's Data Science Boot Camp and required identifying the 5 "best" (as defined by the student) ZIP codes for investment and developing support for these recommendations to a hypothetical client (e.g., a real estate investment trust).  
 
-_**Note:**  This project was completed in early 2020, prior to the Covid-19 pandemic.  The economic impacts of the Covid-19 pandemic created uncharacteristic housing market fluctuations that could not have been predicted in this analysis.  Time permitting, I will revisit this analysis and see how market prices changed over the prediction period, and what predictions might be made for the next 18 months._   --Gina D., Sept. 29, 2022
+_**Note:**  This project was completed in early 2020, prior to the Covid-19 pandemic.  The economic impacts of the Covid-19 pandemic created uncharacteristic housing market fluctuations that could not have been predicted in this analysis.  Time permitting, I will revisit this analysis and see how market prices changed over the prediction period, and what predictions might be made for the next 18 months._   --Sept. 29, 2022
 
 ## My focus:  Sacramento Metropolitan Area
 
