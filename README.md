@@ -81,7 +81,7 @@ Analyzing time series data requires a number of decisions around data manipulati
 
 #### Parameter tuning
 
-Combining the three elements of ARIMA modeling requires selecting values for each of three parameters: 1) the number of lag periods (p); 2) the steps between periods for differencing (d); and 3) the number of periods to include for moving average calculations (q).  
+Combining the three elements of ARIMA modeling requires selecting values for each of three parameters: 1) the number of lag periods, or "p"; 2) the steps between periods for differencing, or "d"; and 3) the number of periods to include for moving average calculations, or "q".  
 * While certain visualization methods, such as ACF and PACF, can provide some clues for selecting good values for the parameters, there is still some guesswork and additional analyses involved in an effort to fine-tune parameters (Reference:  https://online.stat.psu.edu/stat510/lesson/3/3.1).  
 * Another way to identify the best parameters is to take a brute-force computational approach:  for each parameter, select the number of lags or periods, then run the model for each combination and select the model with the lowest MSE.  
   * As the number of ZIP codes I analyzed ended up being rather large (~20), this is the approach I utilized.  This ensures consistency of analysis across ZIP codes--as opposed to selecting multiple parameter candidates based on a combination of plots and trial-and-error analyses.
