@@ -134,7 +134,7 @@ The summary table is sorted by the investment rating, which was based primarily 
 Regarding the range of return between the best- and worst-case scenarios:  
 * Note that the 6th ZIP code in the chart (El Dorado) has predicted returns that are similar to the 5th place ZIP in table (Granite Bay), but with a much wider range between the best-case and worst-case scenarios.  
 * El Dorado's potential best-case scenario is much higher than Granite Bay's (55.6% vs. 31.5%), but the downside risk of the worst-case scenario is much worse than Granite Bay (-36.5% vs. -12%).  
-* Even if El Dorado's predicted returns were slightly higher than Granite Bay, I would still have selected Granite Bay for the 5th ZIP code on the list because Granite Bay's worst-case scenario drop in value is much less than that for El Dorado.  
+* From an investment perspective, even if El Dorado's predicted returns were slightly higher than Granite Bay, I would still have selected Granite Bay for the 5th ZIP code on the list because Granite Bay's down-side risk is much less than that for El Dorado.  
 
 ##### A few interesting observations about home market value curves from Mod4 Project:
 
