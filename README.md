@@ -3,13 +3,13 @@
 
 ## Overview
 
-This project analyzed Zillow monthly housing values for over 14,000 ZIP Codes in the U.S. from 04/01/1996 to 03/01/2018.  The project was one of five I completed to graduate from the Flatiron School's Data Science Boot Camp and required identifying the 5 "best" (as defined by the student) ZIP codes for investment and developing support for these recommendations to a hypothetical client (e.g., a real estate investment trust).  
+This project analyzed Zillow monthly housing values for over 14,000 ZIP Codes in the U.S. from 04/01/1996 to 03/01/2018 to predict housing values going out 18 months from March 2018.  The project was one of five I completed to graduate from the Flatiron School's Data Science intensive boot camp and required identifying the 5 "best" (as defined by the student) ZIP codes for investment and developing support for these recommendations to a hypothetical client (e.g., a real estate investment trust).  
 
-_**Note:**  This project was completed in early 2020, prior to the Covid-19 pandemic.  The economic impacts of the Covid-19 pandemic created uncharacteristic housing market fluctuations that could not have been predicted in this analysis.  Time permitting, I will revisit this analysis and see how market prices changed over the prediction period, and what predictions might be made for the next 18 months._   --Sept. 29, 2022
+_**Note:**  This project was completed in early 2020, prior to the Covid-19 pandemic.  Obviously, the Covid-19 pandemic created uncharacteristic housing market fluctuations that could not have been predicted in this analysis.  Time permitting, I will revisit this analysis and see how market prices changed over the prediction period, and what predictions might be made for the next 18 months._   --Sept. 29, 2022
 
 ## My focus:  Sacramento Metropolitan Area
 
-Because the Sacramento area has experience steady growth over the last few decades, and because I live in the region (providing me with some background knowledge to consider as I developed my analyses), my hypothetical investment group focused on the Sacramento Metropolitan Area.  
+Because the Sacramento area has experience steady growth over the last few decades, and because I lived in the region when I performed the analysis, my hypothetical investment group focused on the Sacramento Metropolitan Area.  
 
 The complete Jupyter notebook containing all analyses is available
 [here.](https://github.com/gdurante2019/Sac_ZIPS_home_prices_ARIMA/blob/master/ARIMA_home_prices_sactoregion_040520.ipynb)
@@ -26,7 +26,7 @@ The complete Jupyter notebook containing all analyses is available
 
 ### Visualization of values by city and/or ZIP code, as well as of predictions of model
 
-I developed iterative functions to visualize values by city within a metro area and across zip codes within cities in a metro area, using lists and dictionaries to iterate through the geographic areas of interest.  Since the Sacramento metro area was the focus of my analysis, I looked at plots by city in the region, and also by ZIP code, by city.  (Examples of these plots for the Sacramento area are below; for all plots, see the technical Jupyter notebook.)  However, this approach can be used to look at average housing values across counties or entire metro areas.   
+I developed iterative functions to visualize values by city within a metro area and across zip codes within cities in a metro area, using lists and dictionaries to iterate through the geographic areas of interest.  Since the Sacramento metro area was the focus of my analysis, I looked at plots by city in the region, and also by ZIP code, by city.  (Examples of these plots for the Sacramento area are below; for all plots, see the Jupyter notebook in this repo.  Given the file size of the notebook, it may be necessary to download it to your machine first.)  However, this approach can be used to look at average housing values across counties or entire metro areas.   
 
 #### Examples of iterative plotting of cities containing multiple ZIP codes (compare to the plots by ZIP code, by city, that follow)
 
