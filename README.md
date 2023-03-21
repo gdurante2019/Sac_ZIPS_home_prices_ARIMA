@@ -77,7 +77,7 @@ Using these and other visualization approaches, I identified 20 ZIP codes in the
 
 #### Selecting ARIMA modeling approach for housing time series data
 
-Analyzing time series data requires a number of decisions around data manipulation and modeling tool selection.  In the case of this housing data, the effects of seasonality on home values turned out to be negligible, so I did not include a seasonality parameter in the modeling.  However, the optimization of other parameters--autoregression ('AR'), differencing/integrating ('I'), and analyzing moving averages ('MA')--was important for creating a more accurate model with better predictive ability (the ARIMA model).  
+"ARIMA" stands for Auto-Regressive Integrated Moving Average.  It is a forecasting algorithm that utilizes historical data--not just housing market values in this case, but other attributes as well--for making future predictions.  Of course, there are a number of parameters to consider when analyzing time series data, such as seasonality and how to average prices over time.  In this case, the effects of seasonality on home values turned out to be negligible, so I did not include a seasonality parameter in the modeling.  However, optimizing other parameters was important for creating a more accurate model with better predictive ability.  
 
 #### Parameter tuning
 
